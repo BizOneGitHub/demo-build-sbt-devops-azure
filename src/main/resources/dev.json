@@ -1,0 +1,6 @@
+{
+  "job": {
+    "bodyCode": "class Logic {\n  var a = 1\n  var b = 3\n  val joinResult = a+b\n}"
+  },
+  "env": "dev"
+}

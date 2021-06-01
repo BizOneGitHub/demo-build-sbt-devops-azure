@@ -17,4 +17,4 @@ steps:
 - script: sbt prod:assembly
   displayName: 'Run $ sbt build package jar'
 - script: java -cp /home/vsts/work/1/s/target/scala-2.12/prod.jar com.bizone.App
-  displayName: 'Run $ main class Test'
+  displayName: 'Run $ job'

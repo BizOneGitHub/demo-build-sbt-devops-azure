@@ -10,10 +10,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: sbt compile
+- script: sbt clean
   displayName: 'Running $ sbt clean'
-- script: sbt clean coverage test coverageReport
-  displayName: 'Running $ sbt coverageReport'
+- script: sbt coverage
+  displayName: 'Running $ create coverage template'
+- script: sbt test
+  displayName: 'Running $ run test'
+- script: sbt coverageReport
+  displayName: 'Running $ scan line code function coverageReport'
 - script: sbt prod:assembly
   displayName: 'Run $ sbt build package jar'
 - script: java -cp /home/vsts/work/1/s/target/scala-2.12/prod.jar com.bizone.App

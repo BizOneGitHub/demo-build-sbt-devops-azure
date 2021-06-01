@@ -11,7 +11,7 @@ pool:
 
 steps:
 - script: sbt prod:assembly
-  displayName: 'Run a one-line script'
+  displayName: 'Run $ sbt build package jar'
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.

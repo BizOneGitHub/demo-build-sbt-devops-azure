@@ -1,6 +1,6 @@
 import sbt.Keys.publishTo
 
-crossScalaVersions := Seq("2.12.10", "2.13.5")
+crossScalaVersions := Seq("2.11.11", "2.12.3")
 //ThisBuild / versionScheme := Some("early-semver")
 lazy val commonSettings = Seq(
   version := "0.0.1",
@@ -14,10 +14,6 @@ lazy val commonSettings = Seq(
     "-language:postfixOps",
     "-language:implicitConversions",
     "-unchecked",
-    "-diagrams",
-    "-implicits",
-    "-skip-packages",
-    "samples",
     "-target:jvm-1.8"),
   fork := true,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),

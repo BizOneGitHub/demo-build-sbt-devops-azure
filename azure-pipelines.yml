@@ -12,11 +12,7 @@ pool:
 steps:
 - script: sbt clean
   displayName: 'Running $ sbt clean'
-- script: sbt coverage
-  displayName: 'Running $ create coverage template'
-- script: sbt test
-  displayName: 'Running $ run test'
-- script: sbt coverageReport
+- script: sbt coverage test coverageReport
   displayName: 'Running $ scan line code function coverageReport'
 - script: sbt prod:assembly
   displayName: 'Run $ sbt build package jar'

@@ -8,5 +8,5 @@ project/target
 .cache-tests
 
 # IntelliJ IDEA specific
-.idea/
-.bsp/
+.idea
+.bsp

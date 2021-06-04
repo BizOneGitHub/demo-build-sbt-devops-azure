@@ -1,9 +1,12 @@
-import sbt.Keys.publishTo
+import sbt.Keys.{isSnapshot, publishTo}
+
 
 crossScalaVersions := Seq("2.11.11", "2.12.3")
+
+
 //ThisBuild / versionScheme := Some("early-semver")
 lazy val commonSettings = Seq(
-  version := "0.0.1",
+  version := "0.0.1-SNAPSHOT",
   scalaVersion := "2.12.10",
   scalacOptions ++= Seq(
     "-encoding", "utf8",
@@ -17,7 +20,7 @@ lazy val commonSettings = Seq(
     "-target:jvm-1.8"),
   fork := true,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
-//  resolvers += Resolver.sonatypeRepo("snapshots")
+//  Resolver.sonatypeRepo("snapshots")
 )
 
 // common dependencies
@@ -48,8 +51,7 @@ lazy val app = project
     case x =>
       val oldStrategy = (assemblyMergeStrategy in assembly).value
       oldStrategy(x)
-  },
-    resolvers += Resolver.mavenLocal
+  }
 ))).settings(inConfig(Prod)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++ Seq(
   assemblyJarName := "prod.jar",
   assemblyMergeStrategy in assembly := {
@@ -74,4 +76,10 @@ publishArtifact in Test := false
 parallelExecution in Test := false
 
 publishMavenStyle := true
-publishTo := Some(MavenCache("local-maven", file(Path.userHome.absolutePath+"/.m2/repository")))
+
+publishTo := {
+  if (isSnapshot.value)
+    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
+  else
+    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
+}

@@ -42,6 +42,7 @@ lazy val app = project
   .configs(Prod, Dev)
   .settings(commonSettings: _*).settings(
     name := "velocitysbt",
+    credentials += Credentials("", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
   )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
   assemblyJarName := s"${name.value}_2.12-${version.value}.jar",
@@ -71,14 +72,14 @@ coverageFailOnMinimum := false
 
 coverageHighlighting := true
 
-publishArtifact in Test := false
+publishArtifact in Test := true
 
 parallelExecution in Test := false
 
 publishMavenStyle := true
 
 
-credentials += Credentials("maven_evaluation", "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+//credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)

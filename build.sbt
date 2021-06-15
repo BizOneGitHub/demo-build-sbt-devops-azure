@@ -94,7 +94,7 @@ credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", 
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("maven_evaluation" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("vsts" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("maven_evaluation" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+    Some("vsts" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

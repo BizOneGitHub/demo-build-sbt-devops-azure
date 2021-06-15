@@ -76,7 +76,7 @@ publishArtifact in Test := false
 parallelExecution in Test := false
 
 publishMavenStyle := true
-credentials += Credentials("maven_evaluation", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+credentials += Credentials("maven_evaluation", "bizonedev.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)

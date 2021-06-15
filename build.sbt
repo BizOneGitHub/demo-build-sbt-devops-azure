@@ -89,11 +89,34 @@ publishMavenStyle := true
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
 resolvers += "Artifact Maven2 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
-//credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
-credentials += Credentials(Path.userHome / ".sbt/.credentials")
+credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+//credentials += Credentials(Path.userHome / ".sbt/.credentials")
 publishTo := {
   if (isSnapshot.value)
     Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
     Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
-}
+
+  artifact in (Compile, assembly) := {
+    val art = (artifact in (Compile, assembly)).value
+    art.withClassifier(Some("assembly"))
+  }
+
+  addArtifact(artifact in (Compile, assembly), assembly)
+
+  val packAnsible = taskKey[File]("Pack ansible files.")
+  val ansibleArtifactName = settingKey[String]("Ansible artifact name")
+
+  packAnsible := {
+    val ansibleZip =
+      target.value / s"scala-${scalaBinaryVersion.value}" / s"${name.value}.zip"
+    IO.zip(
+      IO.listFiles(Path("ansible").asFile).map(f => (f, f.name)),
+      ansibleZip,
+      None
+    )
+    ansibleZip
+  }
+  artifact in packAnsible := Artifact(name.value, "zip", "zip").withClassifier(Some("ansible"))
+
+  addArtifact(artifact in packAnsible, packAnsible)

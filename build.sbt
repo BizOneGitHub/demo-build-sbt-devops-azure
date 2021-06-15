@@ -42,7 +42,6 @@ lazy val app = project
   .configs(Prod, Dev)
   .settings(commonSettings: _*).settings(
     name := "velocitysbt",
-    credentials += Credentials("maven_evaluation", "bizonedev.pkgs.visualstudio.com", "BizOneDe1v", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
   )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
   assemblyJarName := s"${name.value}_2.12-${version.value}.jar",
@@ -87,7 +86,7 @@ publishMavenStyle := true
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-
+credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)

@@ -33,7 +33,6 @@ libraryDependencies  in ThisBuild ++= Seq(
   "junit" % "junit" % "4.11" % Test
 )
 
-ThisBuild / useCoursier := false
 
 
 lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
@@ -90,8 +89,8 @@ publishMavenStyle := true
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
 resolvers += "Artifact Maven2 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
-credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
-//credentials += Credentials(Path.userHome / ".sbt/.credentials")
+//credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+credentials += Credentials(Path.userHome / ".sbt/.credentials")
 publishTo := {
   if (isSnapshot.value)
     Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")

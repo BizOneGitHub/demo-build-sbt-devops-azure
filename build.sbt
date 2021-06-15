@@ -77,12 +77,8 @@ parallelExecution in Test := false
 
 publishMavenStyle := true
 
-resolvers ++= Seq(
-  "Artifactory maven releases".at(
-    "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation"
-  )
-)
-credentials += Credentials("maven_evaluation", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+
+credentials += Credentials("maven_evaluation", "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)

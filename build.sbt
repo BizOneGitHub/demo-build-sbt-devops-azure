@@ -98,26 +98,3 @@ publishTo := {
   else
     Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
 }
-artifact in (Compile, assembly) := {
-  val art = (artifact in (Compile, assembly)).value
-  art.withClassifier(Some("assembly"))
-}
-
-addArtifact(artifact in (Compile, assembly), assembly)
-
-val packAnsible = taskKey[File]("Pack ansible files.")
-val ansibleArtifactName = settingKey[String]("Ansible artifact name")
-
-packAnsible := {
-  val ansibleZip =
-    target.value / s"scala-${scalaBinaryVersion.value}" / s"${name.value}.zip"
-  IO.zip(
-    IO.listFiles(Path("ansible").asFile).map(f => (f, f.name)),
-    ansibleZip,
-    None
-  )
-  ansibleZip
-}
-artifact in packAnsible := Artifact(name.value, "zip", "zip").withClassifier(Some("ansible"))
-
-addArtifact(artifact in packAnsible, packAnsible)

@@ -82,7 +82,7 @@ resolvers ++= Seq(
     "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation"
   )
 )
-credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+credentials += Credentials("maven_evaluation", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)
@@ -94,7 +94,7 @@ credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudi
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("Artifactory Realm" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("snapshots" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("Artifactory Realm" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+    Some("releases" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

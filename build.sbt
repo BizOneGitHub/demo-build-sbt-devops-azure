@@ -44,6 +44,7 @@ lazy val app = project
   .configs(Prod, Dev)
   .settings(commonSettings: _*).settings(
     name := "velocitysbt",
+    organization := "com.bizone"
   )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
   assemblyJarName := s"${name.value}_2.12-${version.value}.jar",

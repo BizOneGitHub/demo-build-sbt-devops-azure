@@ -76,7 +76,7 @@ publishArtifact in Test := false
 parallelExecution in Test := false
 
 publishMavenStyle := true
-credentials += Credentials("Sonatype Nexus Repository Manager", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+credentials += Credentials("maven_evaluation", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)
@@ -88,7 +88,7 @@ credentials += Credentials("Sonatype Nexus Repository Manager", "bizonedev.pkgs.
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("snapshots" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("Artifact Nexus Repository Manager snapshots" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("releases" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+    Some("Artifact Nexus Repository Manager" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

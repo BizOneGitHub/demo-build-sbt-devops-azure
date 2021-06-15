@@ -12,7 +12,7 @@ pool:
 
 steps:
 - powershell: |
-    New-Item $HOME/.sbt/.credentials
+    New-Item $HOME/.sbt/.credentials -ItemType file
     Add-Content  $HOME/.sbt/.credentials "`nrealm=https://pkgsprodsu3weu.app.pkgs.visualstudio.com/"
     Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
     Add-Content  $HOME/.sbt/.credentials "`npassword=BizOneDev"

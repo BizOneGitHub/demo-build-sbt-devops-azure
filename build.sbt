@@ -20,7 +20,7 @@ lazy val commonSettings = Seq(
     "-target:jvm-1.8"),
   fork := true,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
-
+  resolvers += Resolver.sonatypeRepo("public")
 )
 
 // common dependencies

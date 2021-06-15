@@ -42,7 +42,7 @@ lazy val app = project
   .configs(Prod, Dev)
   .settings(commonSettings: _*).settings(
     name := "velocitysbt",
-    credentials += Credentials("", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+    credentials += Credentials("maven_evaluation", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
   )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
   assemblyJarName := s"${name.value}_2.12-${version.value}.jar",
@@ -81,17 +81,17 @@ publishMavenStyle := true
 
 //credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
-//publishTo := {
-//  if (isSnapshot.value)
-//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
-//  else
-//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
-//}
-resolvers += "maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
+publishTo := {
+  if (isSnapshot.value)
+    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
+  else
+    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
+}
+//resolvers += "maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("maven_evaluation" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("azure" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("maven_evaluation" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+    Some("azure" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

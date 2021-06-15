@@ -76,7 +76,7 @@ publishArtifact in Test := false
 parallelExecution in Test := false
 
 publishMavenStyle := true
-credentials += Credentials("Artifactory Realm", "https://bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+credentials += Credentials("Artifactory Realm", "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)
@@ -88,7 +88,7 @@ credentials += Credentials("Artifactory Realm", "https://bizonedev.pkgs.visualst
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("Artifact Nexus Repository Manager snapshots" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("Artifactory Realm" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("Artifact Nexus Repository Manager" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+    Some("Artifactory Realm" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

@@ -12,7 +12,7 @@ pool:
 
 steps:
 - powershell: |
-    $destinationFolder = $HOME/.sbt/
+    $destinationFolder = $HOME/.sbt
     if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
     New-Item $HOME/.sbt/.credentials -ItemType file
     Add-Content  $HOME/.sbt/.credentials "`nrealm=https://pkgsprodsu3weu.app.pkgs.visualstudio.com/"

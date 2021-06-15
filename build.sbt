@@ -35,8 +35,6 @@ libraryDependencies  in ThisBuild ++= Seq(
 
 ThisBuild / useCoursier := false
 
-val azureArtifactory ="Azure artifactory" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots"
-val azureArtifactoryCreds = Credentials("https://bizonedev.pkgs.visualstudio.com", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
 lazy val Dev = config("dev") extend(Compile) describedAs("scope to build dev packages")
@@ -47,8 +45,7 @@ lazy val app = project
   .configs(Prod, Dev)
   .settings(commonSettings: _*).settings(
     name := "velocitysbt",
-  ).settings(publishTo in ThisBuild := Some(azureArtifactory),
-  credentials += azureArtifactoryCreds)
+  )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
   assemblyJarName := s"${name.value}_2.12-${version.value}.jar",
   assemblyMergeStrategy in assembly := {
@@ -93,11 +90,11 @@ publishMavenStyle := true
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
 //resolvers += "azure" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
-//credentials += Credentials("https://bizonedev.pkgs.visualstudio.com", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
-//publishTo := {
-//  val nexus = "https://bizonedev.pkgs.visualstudio.com"
-//  if (isSnapshot.value)
-//    Some("Azure artifactory" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
-//  else
-//    Some("Azure artifactory" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
-//}
+credentials += Credentials("https://bizonedev.pkgs.visualstudio.com", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+publishTo := {
+  val nexus = "https://bizonedev.pkgs.visualstudio.com"
+  if (isSnapshot.value)
+    Some("Azure artifactory" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+  else
+    Some("Azure artifactory" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+}

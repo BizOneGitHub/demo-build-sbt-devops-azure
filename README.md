@@ -23,3 +23,6 @@ Explain Trigger:\
 https://docs.microsoft.com/en-us/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=yaml \
 
 https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=example%2Cparameter-schema#step-templates
+
+https://academy.databricks.com/course/apache-spark-programming-with-databricks
+https://docs.microsoft.com/en-us/azure/databricks/notebooks/azure-devops-services-version-control

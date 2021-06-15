@@ -20,7 +20,7 @@ lazy val commonSettings = Seq(
     "-target:jvm-1.8"),
   fork := true,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
-//  Resolver.sonatypeRepo("snapshots")
+
 )
 
 // common dependencies
@@ -76,10 +76,19 @@ publishArtifact in Test := false
 parallelExecution in Test := false
 
 publishMavenStyle := true
+credentials += Credentials("Sonatype Nexus Repository Manager", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+
+//publishTo := {
+//  if (isSnapshot.value)
+//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
+//  else
+//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
+//}
 
 publishTo := {
+  val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
+    Some("snapshots" at nexus + "Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
+    Some("releases" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

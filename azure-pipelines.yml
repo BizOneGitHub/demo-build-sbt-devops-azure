@@ -17,7 +17,7 @@ steps:
   displayName: 'Running $ test'
 - script: sbt coverage test coverageReport
   displayName: 'Running $ scan line of code function coverageReport'
-- script: sbt prod:assembly
+- script: sbt coverageOff prod:assembly publish
   displayName: 'Run $ sbt build package jar'
 - script: java -cp /home/vsts/work/1/s/target/scala-2.12/sbt-1.0/prod.jar com.bizone.App
   displayName: 'Run $ job'

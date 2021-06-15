@@ -88,7 +88,7 @@ credentials += Credentials("Sonatype Nexus Repository Manager", "bizonedev.pkgs.
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("snapshots" at nexus + "Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("snapshots" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
     Some("releases" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

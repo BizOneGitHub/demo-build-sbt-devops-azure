@@ -13,8 +13,6 @@ pool:
 steps:
 - script: sbt clean
   displayName: 'Running $ sbt clean'
-- script: sbt test
-  displayName: 'Running $ test'
 - script: sbt coverage test coverageReport
   displayName: 'Running $ scan line of code function coverageReport'
 - script: sbt coverageOff prod:assembly publish

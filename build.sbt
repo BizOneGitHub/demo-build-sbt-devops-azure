@@ -6,7 +6,7 @@ crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 //ThisBuild / versionScheme := Some("early-semver")
 lazy val commonSettings = Seq(
-  version := "0.0.1-SNAPSHOT",
+  version := "0.0.1",
   scalaVersion := "2.12.10",
   scalacOptions ++= Seq(
     "-encoding", "utf8",
@@ -89,12 +89,12 @@ publishMavenStyle := true
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-resolvers += Resolver.url("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", url("https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"))
+//resolvers += Resolver.url("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", url("https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"))
 credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("vsts" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("snapshots" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("vsts" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+    Some("release" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/")
 }

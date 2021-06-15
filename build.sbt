@@ -36,7 +36,7 @@ libraryDependencies  in ThisBuild ++= Seq(
 lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
 lazy val Dev = config("dev") extend(Compile) describedAs("scope to build dev packages")
 // the application
-lazy val app = project
+lazy val app = crossProject(JSPlatform, JVMPlatform)
   .in(file("."))
   .enablePlugins(SbtPlugin)
   .configs(Prod, Dev)

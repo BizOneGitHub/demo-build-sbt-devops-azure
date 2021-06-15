@@ -90,7 +90,7 @@ publishMavenStyle := true
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
 //resolvers += "azure" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
-credentials += Credentials("https://bizonedev.pkgs.visualstudio.com", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)

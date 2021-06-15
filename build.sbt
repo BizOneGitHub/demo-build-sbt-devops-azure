@@ -33,6 +33,8 @@ libraryDependencies  in ThisBuild ++= Seq(
   "junit" % "junit" % "4.11" % Test
 )
 
+ThisBuild / useCoursier := false
+
 lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
 lazy val Dev = config("dev") extend(Compile) describedAs("scope to build dev packages")
 // the application
@@ -86,7 +88,7 @@ publishMavenStyle := true
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-//resolvers += "maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
+resolvers += "azure" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
 credentials += Credentials("", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"

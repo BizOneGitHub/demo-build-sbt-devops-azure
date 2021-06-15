@@ -76,7 +76,13 @@ publishArtifact in Test := false
 parallelExecution in Test := false
 
 publishMavenStyle := true
-credentials += Credentials("Artifactory Realm", "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+
+resolvers ++= Seq(
+  "Artifactory maven releases".at(
+    "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation"
+  )
+)
+credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)

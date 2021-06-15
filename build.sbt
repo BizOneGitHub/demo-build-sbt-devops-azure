@@ -89,12 +89,12 @@ publishMavenStyle := true
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-//resolvers += "azure" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
+resolvers += Resolver.url("https://pkgsprodwus21.pkgs.visualstudio.com/", url("https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"))
 credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)
-    Some("Azure artifactory" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("maven_evaluation" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("Azure artifactory" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
+    Some("maven_evaluation" at nexus + "/Demo/_packaging/maven_evaluation/maven/v1")
 }

@@ -42,7 +42,7 @@ lazy val app = project
   .configs(Prod, Dev)
   .settings(commonSettings: _*).settings(
     name := "velocitysbt",
-    credentials += Credentials("maven_evaluation", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+    credentials += Credentials("", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
   )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
   assemblyJarName := s"${name.value}_2.12-${version.value}.jar",

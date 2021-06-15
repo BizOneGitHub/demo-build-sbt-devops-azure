@@ -88,7 +88,7 @@ publishMavenStyle := true
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
 //resolvers += "maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1"
-fullResolvers := Seq("org-artifacts" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1")
+resolvers += "maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
 publishTo := {
   val nexus = "https://bizonedev.pkgs.visualstudio.com"
   if (isSnapshot.value)

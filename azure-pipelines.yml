@@ -18,12 +18,12 @@ steps:
     Add-Content  $HOME/.sbt/.credentials "`nrealm="
     Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
     Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-    Add-Content  $HOME/.sbt/.credentials "`npassword=hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq"
+    Add-Content  $HOME/.sbt/.credentials "`npassword=6jqu5onqbjhmj5iti3av24olv2i253kaaaeme4hcipldvusxklka"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport
 #  displayName: 'Running $ scan line of code function coverageReport'
-- script: java -cp  /home/vsts/work/1/s/target/sbt-1.0/velocity-0.0.1.jar com.bizone.App
-  displayName: 'Run $ job'
 - script: sbt coverageOff dev:assembly publish
   displayName: 'Run $ sbt coverageOff dev:assembly publish'
+- script: java -cp  /home/vsts/work/1/s/target/sbt-1.0/velocity-0.0.1.jar com.bizone.App
+  displayName: 'Run $ job'

@@ -9,9 +9,7 @@ lazy val commonSettings = Seq(
   organization := "com.bizone",
   name := "velocity",
   crossPaths := false,
-  autoScalaLibrary := false,  //don't attach scala libs as dependencies
-  description := "project for publishing dependency to maven repo, use 'sbt publish Assembly' to install it",
-//  packageBin in Compile     := baseDirectory.value / s"${name.value}-${version.value}.jar",
+  packageBin in Compile     := baseDirectory.value /"target/sbt-1.0"/ s"${name.value}_2.12_1.0-${version.value}.jar",
 //  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
 //   disable publishing the main API jar
   Compile / packageDoc / publishArtifact := false,
@@ -54,9 +52,8 @@ lazy val app = project
   .enablePlugins(SbtPlugin)
   .configs(Prod, Dev)
   .settings(commonSettings: _*)
-
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
-  assemblyJarName := s"${name.value}-${version.value}.jar",
+  assemblyJarName := s"${name.value}_2.12_1.0-${version.value}.jar",
   assemblyMergeStrategy in assembly := {
     case PathList("application.json") => MergeStrategy.discard
     case PathList("dev.json") => new MyMergeStrategy()
@@ -65,7 +62,7 @@ lazy val app = project
       oldStrategy(x)
   }
 ))).settings(inConfig(Prod)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++ Seq(
-  assemblyJarName := s"${name.value}-${version.value}.jar",
+  assemblyJarName := s"${name.value}_2.12_1.0-${version.value}.jar",
   assemblyMergeStrategy in assembly := {
     case PathList("application.json") => MergeStrategy.discard
     case PathList("prod.json") => new MyMergeStrategy()
@@ -96,18 +93,18 @@ artifact in (Compile, assembly) := {
 
 addArtifact(artifact in (Compile, assembly), assembly)
 
-//publishTo := {
-//  if (isSnapshot.value)
-//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
-//  else
-//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
-//}
-resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
-
-credentials += Credentials(Path.userHome / ".sbt"/".credentials")
 publishTo := {
   if (isSnapshot.value)
-    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
   else
-    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
+    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 }
+//resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
+//
+//credentials += Credentials(Path.userHome / ".sbt"/".credentials")
+//publishTo := {
+//  if (isSnapshot.value)
+//    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+//  else
+//    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
+//}

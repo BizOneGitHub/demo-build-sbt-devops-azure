@@ -2,12 +2,23 @@ import sbt.Keys.{isSnapshot, publishTo}
 
 
 crossScalaVersions := Seq("2.11.11", "2.12.3")
-
-
 //ThisBuild / versionScheme := Some("early-semver")
 lazy val commonSettings = Seq(
   version := "0.0.1",
   scalaVersion := "2.12.10",
+  organization := "com.bizone",
+  name := "velocity",
+  crossPaths := false,
+  autoScalaLibrary := false,  //don't attach scala libs as dependencies
+  description := "project for publishing dependency to maven repo, use 'sbt publish Assembly' to install it",
+//  packageBin in Compile     := baseDirectory.value / s"${name.value}-${version.value}.jar",
+//  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
+//   disable publishing the main API jar
+  Compile / packageDoc / publishArtifact := false,
+
+  // disable publishing the main sources jar
+  Compile / packageSrc / publishArtifact := false,
+
   scalacOptions ++= Seq(
     "-encoding", "utf8",
     "-deprecation",
@@ -42,17 +53,10 @@ lazy val app = project
   .in(file("."))
   .enablePlugins(SbtPlugin)
   .configs(Prod, Dev)
-  .settings(commonSettings: _*).settings(
-    name := "velocity",
-    organization := "com.bizone",
-    // disable publishing the main API jar
-    Compile / packageDoc / publishArtifact := false,
+  .settings(commonSettings: _*)
 
-    // disable publishing the main sources jar
-    Compile / packageSrc / publishArtifact := false,
-  )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
-  assemblyJarName := s"${name.value}_2.12-${version.value}.jar",
+  assemblyJarName := s"${name.value}-${version.value}.jar",
   assemblyMergeStrategy in assembly := {
     case PathList("application.json") => MergeStrategy.discard
     case PathList("dev.json") => new MyMergeStrategy()
@@ -61,7 +65,7 @@ lazy val app = project
       oldStrategy(x)
   }
 ))).settings(inConfig(Prod)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++ Seq(
-  assemblyJarName := "prod.jar",
+  assemblyJarName := s"${name.value}-${version.value}.jar",
   assemblyMergeStrategy in assembly := {
     case PathList("application.json") => MergeStrategy.discard
     case PathList("prod.json") => new MyMergeStrategy()
@@ -85,9 +89,13 @@ parallelExecution in Test := false
 
 publishMavenStyle := true
 
+artifact in (Compile, assembly) := {
+  val art = (artifact in (Compile, assembly)).value
+  art.withClassifier(Some("assembly"))
+}
 
-credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
-
+//addArtifact(artifact in (Compile, assembly), assembly)
+//
 //publishTo := {
 //  if (isSnapshot.value)
 //    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))

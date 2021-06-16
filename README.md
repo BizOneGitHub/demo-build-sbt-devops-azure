@@ -26,3 +26,12 @@ https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-d
 
 https://academy.databricks.com/course/apache-spark-programming-with-databricks
 https://docs.microsoft.com/en-us/azure/databricks/notebooks/azure-devops-services-version-control
+
+#- powershell: |
+#    $destinationFolder = $HOME+"\.sbt"
+#    if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
+#    New-Item $HOME/.sbt/.credentials -ItemType file
+#    Add-Content  $HOME/.sbt/.credentials "`nrealm="
+#    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
+#    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
+#    Add-Content  $HOME/.sbt/.credentials "`npassword=hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq"

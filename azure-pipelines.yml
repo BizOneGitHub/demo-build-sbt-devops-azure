@@ -11,19 +11,19 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-#- powershell: |
-#    $destinationFolder = $HOME+"\.sbt"
-#    if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
-#    New-Item $HOME/.sbt/.credentials -ItemType file
-#    Add-Content  $HOME/.sbt/.credentials "`nrealm="
-#    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
-#    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-#    Add-Content  $HOME/.sbt/.credentials "`npassword="
+- powershell: |
+    $destinationFolder = $HOME+"\.sbt"
+    if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
+    New-Item $HOME/.sbt/.credentials -ItemType file
+    Add-Content  $HOME/.sbt/.credentials "`nrealm=maven_evaluation Realm"
+    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
+    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
+    Add-Content  $HOME/.sbt/.credentials "`npassword=hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport
 #  displayName: 'Running $ scan line of code function coverageReport'
-- script: sbt coverageOff dev:assembly -Dsbt.gigahorse=false publish
+- script: sbt coverageOff dev:assembly publishM2
   displayName: 'Run $ sbt coverageOff dev:assembly publish'
 - script: java -cp  /home/vsts/work/1/s/target/scala-2.12/sbt-1.0/velocitysbt_2.12-0.0.1-SNAPSHOT.jar com.bizone.App
   displayName: 'Run $ job'

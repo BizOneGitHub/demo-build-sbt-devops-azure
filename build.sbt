@@ -94,7 +94,7 @@ credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudi
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-//resolvers += "Artifact Maven2 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
+resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
 
 credentials += Credentials(Path.userHome / ".sbt"/".credentials")
 publishTo := {

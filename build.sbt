@@ -94,8 +94,8 @@ artifact in (Compile, assembly) := {
   art.withClassifier(Some("assembly"))
 }
 
-//addArtifact(artifact in (Compile, assembly), assembly)
-//
+addArtifact(artifact in (Compile, assembly), assembly)
+
 //publishTo := {
 //  if (isSnapshot.value)
 //    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))

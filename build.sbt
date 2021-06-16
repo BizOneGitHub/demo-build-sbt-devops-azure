@@ -43,8 +43,13 @@ lazy val app = project
   .enablePlugins(SbtPlugin)
   .configs(Prod, Dev)
   .settings(commonSettings: _*).settings(
-    name := "velocitysbt",
-    organization := "com.bizone"
+    name := "velocity",
+    organization := "com.bizone",
+    // disable publishing the main API jar
+    Compile / packageDoc / publishArtifact := false,
+
+    // disable publishing the main sources jar
+    Compile / packageSrc / publishArtifact := false,
   )
   .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
   assemblyJarName := s"${name.value}_2.12-${version.value}.jar",
@@ -81,7 +86,7 @@ parallelExecution in Test := false
 publishMavenStyle := true
 
 
-//credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
+credentials += Credentials("maven_evaluation Realm", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
 
 //publishTo := {
 //  if (isSnapshot.value)
@@ -89,12 +94,12 @@ publishMavenStyle := true
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-resolvers += "Artifact Maven2 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
-credentials += Credentials("https://pkgsprodsu3weu.app.pkgs.visualstudio.com/", "bizonedev.pkgs.visualstudio.com", "BizOneDev", "hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq")
-//credentials += Credentials(Path.userHome / ".sbt/.credentials")
+//resolvers += "Artifact Maven2 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
+
+credentials += Credentials(Path.userHome / ".sbt"/".credentials")
 publishTo := {
   if (isSnapshot.value)
-    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
+    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
 }

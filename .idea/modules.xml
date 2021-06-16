@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/testPackage.iml" filepath="$PROJECT_DIR$/.idea/modules/testPackage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/velocitysbt.iml" filepath="$PROJECT_DIR$/.idea/modules/velocitysbt.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/velocitysbt-build.iml" filepath="$PROJECT_DIR$/.idea/modules/velocitysbt-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/velocity.iml" filepath="$PROJECT_DIR$/.idea/modules/velocity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/velocity-build.iml" filepath="$PROJECT_DIR$/.idea/modules/velocity-build.iml" />
     </modules>
   </component>
 </project>

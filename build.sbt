@@ -93,18 +93,18 @@ artifact in (Compile, assembly) := {
 
 addArtifact(artifact in (Compile, assembly), assembly)
 
-publishTo := {
-  if (isSnapshot.value)
-    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
-  else
-    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
-}
-//resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
-//
-//credentials += Credentials(Path.userHome / ".sbt"/".credentials")
 //publishTo := {
 //  if (isSnapshot.value)
-//    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
 //  else
-//    Some("maven_evaluation" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
+//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
+resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
+
+credentials += Credentials(Path.userHome / ".sbt"/".credentials")
+publishTo := {
+  if (isSnapshot.value)
+    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+  else
+    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
+}

@@ -84,13 +84,13 @@ coverageHighlighting := true
 
 publishMavenStyle := true
 
-
-publishTo := {
-  if (isSnapshot.value)
-    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
-  else
-    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
-}
+//
+//publishTo := {
+//  if (isSnapshot.value)
+//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
+//  else
+//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
+//}
 //resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
 
 //fullResolvers := Seq("org-artifacts" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/") // Force only private repository

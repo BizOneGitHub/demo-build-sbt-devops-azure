@@ -95,13 +95,13 @@ publishTo := {
 
 //fullResolvers := Seq("org-artifacts" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/") // Force only private repository
 
-//credentials += Credentials(Path.userHome / ".sbt"/".credentials")
-//publishTo := {
-//  if (isSnapshot.value)
-//    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
-//  else
-//    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
-//}
+credentials += Credentials(Path.userHome / ".sbt"/".credentials")
+publishTo := {
+  if (isSnapshot.value)
+    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+  else
+    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
+}
 
 
 artifact in (Compile, assembly) := {

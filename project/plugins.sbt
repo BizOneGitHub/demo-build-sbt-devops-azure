@@ -1,5 +1,2 @@
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.1")
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.8.1")
-fullResolvers := Seq(Resolver.url("org-artifacts-ivy", url("https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/ivy-releases"))( Resolver.ivyStylePatterns))
-fullResolvers := Seq("org-artifacts" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
-fullResolvers := Seq(Resolver.url("org-artifacts-ivy", url("https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/ivy-releases"))( Patterns("[organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext]")))

@@ -18,7 +18,7 @@ steps:
     Add-Content  $HOME/.sbt/.credentials "`nrealm="
     Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
     Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-    Add-Content  $HOME/.sbt/.credentials "`npassword=6jqu5onqbjhmj5iti3av24olv2i253kaaaeme4hcipldvusxklka"
+    Add-Content  $HOME/.sbt/.credentials "`npassword=55zcgpocv3zimed4m3f5y7c7kstqvvjuf4wke3lzxrqer7nf4nfq"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport

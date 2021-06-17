@@ -10,7 +10,7 @@ lazy val commonSettings = Seq(
   name := "velocity",
   crossPaths := false,
   autoScalaLibrary := false,
-//  packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-assembly-${version.value}.jar",
+  packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-${version.value}.jar",
 //  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
 //   disable publishing the main API jar
   Compile / packageDoc / publishArtifact := false,
@@ -73,7 +73,7 @@ lazy val app = project
 
 coverageMinimum := 70
 
-coverageFailOnMinimum := false
+coverageFailOnMinimum := true
 
 coverageHighlighting := true
 
@@ -81,18 +81,18 @@ coverageHighlighting := true
 publishMavenStyle := true
 
 
-//publishTo := {
-//  if (isSnapshot.value)
-//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
-//  else
-//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
-//}
-
-
-credentials += Credentials(Path.userHome / ".sbt"/".credentials")
 publishTo := {
   if (isSnapshot.value)
-    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
   else
-    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
+    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 }
+
+
+//credentials += Credentials(Path.userHome / ".sbt"/".credentials")
+//publishTo := {
+//  if (isSnapshot.value)
+//    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
+//  else
+//    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
+//}

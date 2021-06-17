@@ -4,7 +4,7 @@ import sbt.Keys.{isSnapshot, publishTo}
 crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 lazy val commonSettings = Seq(
-  version := "0.0.2",
+  version := "0.0.1",
   scalaVersion := "2.12.10",
   organization := "com.bizone",
   name := "velocity",
@@ -95,5 +95,5 @@ publishTo := {
   if (isSnapshot.value)
     Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
   else
-    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
+    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
 }

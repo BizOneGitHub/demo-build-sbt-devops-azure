@@ -4,7 +4,7 @@ import sbt.Keys.{isSnapshot, publishTo}
 crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 lazy val commonSettings = Seq(
-  version := "0.0.2",
+  version := "0.0.3",
   scalaVersion := "2.12.10",
   organization := "com.bizone",
   name := "velocity",

@@ -1,6 +1,6 @@
 *.class
 *.log
-target/
+/target/
 project/project/
 project/target
 # Scala-IDE specific

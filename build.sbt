@@ -73,7 +73,7 @@ lazy val app = project
 
 coverageMinimum := 70
 
-coverageFailOnMinimum := false
+coverageFailOnMinimum := true
 
 coverageHighlighting := true
 

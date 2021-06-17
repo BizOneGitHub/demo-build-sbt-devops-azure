@@ -11,7 +11,7 @@ lazy val commonSettings = Seq(
   name := "velocity",
   crossPaths := false,
   autoScalaLibrary := false,
-  packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-${version.value}.jar",
+  packageBin in Compile     := baseDirectory.value / s"${name.value}-${version.value}.jar",
 //  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
 //   disable publishing the main API jar
   Compile / packageDoc / publishArtifact := false,

@@ -23,7 +23,6 @@ steps:
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport
 #  displayName: 'Running $ scan line of code function coverageReport'
--
 - script: sbt coverageOff dev:assembly publish
   displayName: 'Run $ sbt coverageOff assembly publish'
 

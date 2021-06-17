@@ -23,11 +23,9 @@ steps:
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport
 #  displayName: 'Running $ scan line of code function coverageReport'
-- script: sbt coverageOff dev:assembly publishM2
-  displayName: 'Run $ sbt coverageOff dev:assembly publish'
-
+-
 - script: sbt coverageOff dev:assembly publish
-  displayName: 'Run $ sbt coverageOff dev:assembly publish'
+  displayName: 'Run $ sbt coverageOff assembly publish'
 
-- script: java -cp  /home/vsts/work/1/s/target/sbt-1.0/velocity-0.0.1.jar com.bizone.App
+- script: java -cp  /home/vsts/work/1/s/target/velocity-0.0.2.jar com.bizone.App
   displayName: 'Run $ job'

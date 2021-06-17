@@ -1,19 +1,16 @@
-import sbinary.DefaultProtocol.anyToSummand
 import sbt.Keys.{isSnapshot, publishTo}
 
 
 crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 lazy val commonSettings = Seq(
-  version := "0.0.1",
+  version := "0.0.2",
   scalaVersion := "2.12.10",
   organization := "com.bizone",
   name := "velocity",
   crossPaths := false,
   autoScalaLibrary := false,
-
-
-//  packageBin in Compile     := baseDirectory.value / s"${name.value}-${version.value}.jar",
+  packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-assembly-${version.value}.jar",
 //  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
 //   disable publishing the main API jar
   Compile / packageDoc / publishArtifact := false,
@@ -22,16 +19,16 @@ lazy val commonSettings = Seq(
   Compile / packageSrc / publishArtifact := false,
   scalacOptions ++= Seq(
     "-encoding", "utf8",
-//    "-deprecation",
-//    "-feature",
-//    "-language:dynamics",
-//    "-language:reflectiveCalls",
-//    "-language:postfixOps",
-//    "-language:implicitConversions",
-//    "-unchecked",
-//    "-target:jvm-1.8"
+    "-deprecation",
+    "-feature",
+    "-language:dynamics",
+    "-language:reflectiveCalls",
+    "-language:postfixOps",
+    "-language:implicitConversions",
+    "-unchecked",
+    "-target:jvm-1.8"
         ),
-  fork := false,
+  fork := true,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 )
 // common dependencies
@@ -45,8 +42,8 @@ libraryDependencies  in ThisBuild ++= Seq(
 
 )
 
-lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
-lazy val Dev = config("dev") extend(Compile) describedAs("scope to build dev packages")
+//lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
+//lazy val Dev = config("dev") extend(Compile) describedAs("scope to build dev packages")
 // the application
 lazy val app = project
   .in(file("."))
@@ -91,9 +88,7 @@ publishMavenStyle := true
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-//resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
 
-//fullResolvers := Seq("org-artifacts" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/") // Force only private repository
 
 credentials += Credentials(Path.userHome / ".sbt"/".credentials")
 publishTo := {
@@ -102,11 +97,3 @@ publishTo := {
   else
     Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")
 }
-
-
-//artifact in (Compile, assembly) := {
-//  val art = (artifact in (Compile, assembly)).value
-//  art.withClassifier(Some("assembly"))
-//}
-//
-//addArtifact(artifact in (Compile, assembly), assembly)

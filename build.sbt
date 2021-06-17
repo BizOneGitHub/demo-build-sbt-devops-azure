@@ -91,7 +91,7 @@ publishMavenStyle := true
 //  else
 //    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
-//resolvers += "maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/"
+resolvers += Seq("maven_evaluation Maven3 Repository" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/")(Resolver.ivyStylePatterns))
 
 //fullResolvers := Seq("org-artifacts" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/") // Force only private repository
 

@@ -4,13 +4,13 @@ import sbt.Keys.{isSnapshot, publishTo}
 crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 lazy val commonSettings = Seq(
-  version := "0.0.1",
+  version := "0.0.2",
   scalaVersion := "2.12.10",
   organization := "com.bizone",
   name := "velocity",
   crossPaths := false,
   autoScalaLibrary := false,
-  packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-assembly-${version.value}.jar",
+//  packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-assembly-${version.value}.jar",
 //  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
 //   disable publishing the main API jar
   Compile / packageDoc / publishArtifact := false,
@@ -42,33 +42,32 @@ libraryDependencies  in ThisBuild ++= Seq(
 
 )
 
-//lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
-//lazy val Dev = config("dev") extend(Compile) describedAs("scope to build dev packages")
+lazy val Prod = config("prod") extend(Compile) describedAs("scope to build production packages")
+lazy val Dev = config("dev") extend(Compile) describedAs("scope to build dev packages")
 // the application
 lazy val app = project
   .in(file("."))
-//  .enablePlugins(SbtPlugin)
-//  .configs(Prod, Dev)
+  .configs(Prod, Dev)
   .settings(commonSettings: _*)
-//  .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
-//    assemblyJarName := s"${name.value}-${version.value}.jar",
-//    assemblyMergeStrategy in assembly := {
-//      case PathList("application.json") => MergeStrategy.discard
-//      case PathList("dev.json") => new MyMergeStrategy()
-//      case x =>
-//        val oldStrategy = (assemblyMergeStrategy in assembly).value
-//        oldStrategy(x)
-//  }
-//))).settings(inConfig(Prod)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++ Seq(
-//  assemblyJarName := s"${name.value}-${version.value}.jar",
-//  assemblyMergeStrategy in assembly := {
-//    case PathList("application.json") => MergeStrategy.discard
-//    case PathList("prod.json") => new MyMergeStrategy()
-//    case x =>
-//      val oldStrategy = (assemblyMergeStrategy in assembly).value
-//      oldStrategy(x)
-//  }
-//)))
+  .settings(inConfig(Dev)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++Seq(
+    assemblyJarName := s"${name.value}-${version.value}.jar",
+    assemblyMergeStrategy in assembly := {
+      case PathList("application.json") => MergeStrategy.discard
+      case PathList("dev.json") => new MyMergeStrategy()
+      case x =>
+        val oldStrategy = (assemblyMergeStrategy in assembly).value
+        oldStrategy(x)
+  }
+))).settings(inConfig(Prod)(Classpaths.configSettings ++ Defaults.configTasks ++ baseAssemblySettings ++ Seq(
+  assemblyJarName := s"${name.value}-${version.value}.jar",
+  assemblyMergeStrategy in assembly := {
+    case PathList("application.json") => MergeStrategy.discard
+    case PathList("prod.json") => new MyMergeStrategy()
+    case x =>
+      val oldStrategy = (assemblyMergeStrategy in assembly).value
+      oldStrategy(x)
+  }
+)))
 
 
 

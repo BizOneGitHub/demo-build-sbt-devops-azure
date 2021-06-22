@@ -14,10 +14,10 @@ lazy val commonSettings = Seq(
   packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-${version.value}.jar",
 //  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
 //   disable publishing the main API jar
-  //Compile / packageDoc / publishArtifact := false,
+  Compile / packageDoc / publishArtifact := false,
 
-  // disable publishing the main sources jar
-  //Compile / packageSrc / publishArtifact := false,
+   disable publishing the main sources jar
+  Compile / packageSrc / publishArtifact := false,
   scalacOptions ++= Seq(
     "-encoding", "utf8",
     "-deprecation",

@@ -1,22 +1,23 @@
 import sbt.Keys.{isSnapshot, publishTo}
+import ReleaseTransformations._
 
+ThisBuild / organization := "com.bizone"
+//ThisBuild / version := "0.0.4"
+ThisBuild / scalaVersion := "2.12.10"
 
 crossScalaVersions := Seq("2.11.11", "2.12.3")
 
 lazy val commonSettings = Seq(
-  version := "0.0.4",
-  scalaVersion := "2.12.10",
-  organization := "com.bizone",
   name := "velocity",
   crossPaths := false,
   autoScalaLibrary := false,
   packageBin in Compile     := baseDirectory.value /"target"/ s"${name.value}-${version.value}.jar",
 //  packageDoc in Compile     := baseDirectory.value / s"${name.value}-javadoc.jar",
 //   disable publishing the main API jar
-  Compile / packageDoc / publishArtifact := false,
+  //Compile / packageDoc / publishArtifact := false,
 
   // disable publishing the main sources jar
-  Compile / packageSrc / publishArtifact := false,
+  //Compile / packageSrc / publishArtifact := false,
   scalacOptions ++= Seq(
     "-encoding", "utf8",
     "-deprecation",
@@ -32,7 +33,7 @@ lazy val commonSettings = Seq(
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
 )
 // common dependencies
-libraryDependencies  in ThisBuild ++= Seq(
+ThisBuild / libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.4.1",
   "org.scalatest" %% "scalatest" % "3.0.0" % "test",
   "org.specs2" % "specs2-core_2.12" % "4.2.0",
@@ -81,18 +82,47 @@ coverageHighlighting := true
 publishMavenStyle := true
 
 
+publishTo := {
+  if (isSnapshot.value)
+    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
+  else
+    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
+}
+
+
+//credentials += Credentials(Path.userHome / ".sbt"/".credentials")
 //publishTo := {
 //  if (isSnapshot.value)
-//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
+//    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
 //  else
-//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
+//    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
 //}
 
 
-credentials += Credentials(Path.userHome / ".sbt"/".credentials")
-publishTo := {
-  if (isSnapshot.value)
-    Some("snapshots" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots")
-  else
-    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
-}
+//releaseVersionBump := sbtrelease.Version.Bump.Next
+//releaseVersionFile := baseDirectory.value / "version.sbt"
+
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
+
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,              // : ReleaseStep
+  inquireVersions,                        // : ReleaseStep
+  runClean,                               // : ReleaseStep
+  runTest,                                // : ReleaseStep
+  setReleaseVersion,                      // : ReleaseStep
+//  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
+//  tagRelease,                             // : ReleaseStep
+//  ReleaseStep(action = Command.process(s"""sonatypeOpen "${organization.value}" "${name.value} v${version.value}"""", _)),
+//  ReleaseStep(action = Command.process("publishSigned", _)),
+//  ReleaseStep(action = Command.process("sonatypeRelease", _)),
+//  setNextVersion,                         // : ReleaseStep
+//  commitNextVersion,                      // : ReleaseStep
+//  pushChanges
+
+)
+
+releaseUseGlobalVersion := false
+/*
+
+ */

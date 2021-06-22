@@ -34,4 +34,9 @@ https://docs.microsoft.com/en-us/azure/databricks/notebooks/azure-devops-service
 #    Add-Content  $HOME/.sbt/.credentials "`nrealm="
 #    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
 #    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-#    Add-Content  $HOME/.sbt/.credentials "`npassword=hjgonlgdt37jyhaf6hhrydvqft5qoxjbzfmga7rry5sv52m725vq"
+#    Add-Content  $HOME/.sbt/.credentials "`npassword="
+
+
+https://spark.apache.org/docs/3.1.2/sql-data-sources-load-save-functions.html
+
+sbt "release release-version 1.2.3 next-version 1.3.0 with-defaults"

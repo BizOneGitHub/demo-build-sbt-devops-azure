@@ -25,7 +25,7 @@ stages:
         pool:
           vmImage: $(vmImage)
         steps:
-          - template: Jobs/build.yml
+          - template: jobs/build.yml
 
   - stage: Prod
     displayName: Deploy prod stage
@@ -41,4 +41,4 @@ stages:
           runOnce:
             deploy:
               steps:
-                - template: Jobs/deploy.yml
+                - template: jobs/deploy.yml

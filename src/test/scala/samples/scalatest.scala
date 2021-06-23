@@ -69,7 +69,7 @@ class ListSuite extends FunSuite with Matchers {
   }
 
   test("A list's length should equal the number of elements it contains") {
-    List() should have length (3)
+    List() should have length (0)
     List(1, 2) should have length (2)
     List("fee", "fie", "foe", "fum") should have length (4)
   }

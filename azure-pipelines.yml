@@ -5,7 +5,6 @@
 
 trigger:
 - main
-- release/*
 
 pool:
   vmImage: ubuntu-latest
@@ -21,6 +20,8 @@ steps:
     Add-Content  $HOME/.sbt/.credentials "`npassword=qrl54hcwbqjoee3ztwojfze37mqwqzbf4gc6whqafysuqupsdw7a"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
+- script: sbt "release release-version 0.1.1 with-defaults"
+  displayName: 'Running $ scan line of code function coverageReport'
 #- script: sbt coverage test coverageReport
 #  displayName: 'Running $ scan line of code function coverageReport'
 - script: sbt coverageOff dev:assembly publish

@@ -139,17 +139,11 @@ releaseProcess := Seq[ReleaseStep](
   runTest,                                // : ReleaseStep
   setReleaseVersion,
   commitReleaseVersion,
-  pushChanges,                //to make sure develop branch is pulled
+  pushChanges,                //to make sure develop branch is pulled && will merge into master and push
   tagRelease,
-//  mergeReleaseVersion,        //will merge into master and push
-//  setNextVersion,
-//  commitNextVersion,
-//  pushChanges,
-//  //
-//  releaseTagComment        := s"Releasing ${(ThisBuild / version).value}",
-//  releaseCommitMessage     := s"Setting version to ${(ThisBuild / version).value}",
-//  releaseNextCommitMessage := s"Setting version to ${(ThisBuild / version).value}",
-
+  setNextVersion,
+  commitNextVersion,
+  pushChanges,
 )
 
 releaseUseGlobalVersion := false

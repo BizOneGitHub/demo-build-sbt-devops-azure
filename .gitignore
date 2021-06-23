@@ -1,7 +1,10 @@
 *.class
 *.log
-project/target
-target
+project/target/scala-2.12
+project/target/streams
+project/target/config-classes
+project/project
+target/
 # Scala-IDE specific
 .cache-main
 .cache-tests

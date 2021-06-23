@@ -1,0 +1,6 @@
+[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\workspace\demo-build-sbt-devops-azure\src\main\resources\application.json,E:\workspace\demo-build-sbt-devops-azure\target\classes\application.json)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\workspace\demo-build-sbt-devops-azure\src\main\resources\dev.json,E:\workspace\demo-build-sbt-devops-azure\target\classes\dev.json)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\workspace\demo-build-sbt-devops-azure\src\main\resources\prod.json,E:\workspace\demo-build-sbt-devops-azure\target\classes\prod.json)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\workspace\demo-build-sbt-devops-azure\src\main\resources\stage.json,E:\workspace\demo-build-sbt-devops-azure\target\classes\stage.json)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\workspace\demo-build-sbt-devops-azure\src\main\resources\test.json,E:\workspace\demo-build-sbt-devops-azure\target\classes\test.json)[0m

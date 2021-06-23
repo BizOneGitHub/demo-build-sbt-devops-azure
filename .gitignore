@@ -1,10 +1,7 @@
 *.class
 *.log
-
-project/project
-project/target/
-
-target/
+project/
+target
 # Scala-IDE specific
 .cache-main
 .cache-tests

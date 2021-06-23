@@ -101,36 +101,9 @@ publishTo := {
 //    Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
 //}
 
-
-//val deployBranch = "master"
-//def merge: (State) => State = { st: State =>
-//  val git = st.extract.get(releaseVcs).get.asInstanceOf[Git]
-//  val curBranch = (git.cmd("rev-parse", "--abbrev-ref", "HEAD") !!).trim
-//  st.log.info(s"####### current branch: $curBranch")
-//  git.cmd("checkout", deployBranch) ! st.log
-//  st.log.info(s"####### pull $deployBranch")
-//  git.cmd("pull") ! st.log
-//  st.log.info(s"####### merge")
-//  git.cmd("merge", curBranch, "--no-ff", "--no-edit") ! st.log
-//  st.log.info(s"####### push")
-//  git.cmd("push", "origin", s"$deployBranch:$deployBranch") ! st.log
-//  st.log.info(s"####### checkout $curBranch")
-//  git.cmd("checkout", curBranch) ! st.log
-//  st
-//}
-
-//lazy val mergeReleaseVersionAction = { st: State =>
-//  val newState = merge(st)
-//  newState
-//}
-//
-//val mergeReleaseVersion = ReleaseStep(mergeReleaseVersionAction)
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
 releaseIgnoreUntrackedFiles := false
 
-//val releaseTagComment        : TaskKey[String]
-//val releaseCommitMessage     : TaskKey[String]
-//val releaseNextCommitMessage : TaskKey[String]
 
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,              // : ReleaseStep
@@ -141,6 +114,7 @@ releaseProcess := Seq[ReleaseStep](
   commitReleaseVersion,
   pushChanges,                //to make sure develop branch is pulled && will merge into master and push
   tagRelease,
+  releaseStepCommandAndRemaining("publish"),
 //  setNextVersion,
 //  commitNextVersion,
   pushChanges,

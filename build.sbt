@@ -1,5 +1,8 @@
 import sbt.Keys.{isSnapshot, publishTo}
 import ReleaseTransformations._
+import ReleasePlugin.autoImport._
+import sbtrelease.{Git, Utilities}
+import Utilities._
 
 ThisBuild / organization := "com.bizone"
 //ThisBuild / version := "0.0.4"
@@ -16,7 +19,7 @@ lazy val commonSettings = Seq(
 //   disable publishing the main API jar
   Compile / packageDoc / publishArtifact := false,
 
-   disable publishing the main sources jar
+//   disable publishing the main sources jar
   Compile / packageSrc / publishArtifact := false,
   scalacOptions ++= Seq(
     "-encoding", "utf8",
@@ -99,26 +102,53 @@ publishTo := {
 //}
 
 
-//releaseVersionBump := sbtrelease.Version.Bump.Next
-//releaseVersionFile := baseDirectory.value / "version.sbt"
+//val deployBranch = "master"
+//def merge: (State) => State = { st: State =>
+//  val git = st.extract.get(releaseVcs).get.asInstanceOf[Git]
+//  val curBranch = (git.cmd("rev-parse", "--abbrev-ref", "HEAD") !!).trim
+//  st.log.info(s"####### current branch: $curBranch")
+//  git.cmd("checkout", deployBranch) ! st.log
+//  st.log.info(s"####### pull $deployBranch")
+//  git.cmd("pull") ! st.log
+//  st.log.info(s"####### merge")
+//  git.cmd("merge", curBranch, "--no-ff", "--no-edit") ! st.log
+//  st.log.info(s"####### push")
+//  git.cmd("push", "origin", s"$deployBranch:$deployBranch") ! st.log
+//  st.log.info(s"####### checkout $curBranch")
+//  git.cmd("checkout", curBranch) ! st.log
+//  st
+//}
 
+//lazy val mergeReleaseVersionAction = { st: State =>
+//  val newState = merge(st)
+//  newState
+//}
+//
+//val mergeReleaseVersion = ReleaseStep(mergeReleaseVersionAction)
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
+releaseIgnoreUntrackedFiles := true
 
+//val releaseTagComment        : TaskKey[String]
+//val releaseCommitMessage     : TaskKey[String]
+//val releaseNextCommitMessage : TaskKey[String]
 
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,              // : ReleaseStep
   inquireVersions,                        // : ReleaseStep
   runClean,                               // : ReleaseStep
   runTest,                                // : ReleaseStep
-  setReleaseVersion,                      // : ReleaseStep
-//  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
-//  tagRelease,                             // : ReleaseStep
-//  ReleaseStep(action = Command.process(s"""sonatypeOpen "${organization.value}" "${name.value} v${version.value}"""", _)),
-//  ReleaseStep(action = Command.process("publishSigned", _)),
-//  ReleaseStep(action = Command.process("sonatypeRelease", _)),
-//  setNextVersion,                         // : ReleaseStep
-//  commitNextVersion,                      // : ReleaseStep
-//  pushChanges
+  setReleaseVersion,
+//  commitReleaseVersion,
+  pushChanges,                //to make sure develop branch is pulled
+  tagRelease,
+//  mergeReleaseVersion,        //will merge into master and push
+//  setNextVersion,
+//  commitNextVersion,
+//  pushChanges,
+//  //
+//  releaseTagComment        := s"Releasing ${(ThisBuild / version).value}",
+//  releaseCommitMessage     := s"Setting version to ${(ThisBuild / version).value}",
+//  releaseNextCommitMessage := s"Setting version to ${(ThisBuild / version).value}",
 
 )
 

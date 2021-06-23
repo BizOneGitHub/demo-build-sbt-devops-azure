@@ -126,7 +126,7 @@ publishTo := {
 //
 //val mergeReleaseVersion = ReleaseStep(mergeReleaseVersionAction)
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
-releaseIgnoreUntrackedFiles := true
+releaseIgnoreUntrackedFiles := false
 
 //val releaseTagComment        : TaskKey[String]
 //val releaseCommitMessage     : TaskKey[String]

@@ -22,8 +22,6 @@ stages:
     displayName: Build stage
     jobs:
       - job: BuildJob
-        auto:
-          branch: dev
         pool:
           vmImage: $(vmImage)
         steps:

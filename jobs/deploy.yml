@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- powershell: |
+    $destinationFolder = $HOME+"\.sbt"
+    if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
+    New-Item $HOME/.sbt/.credentials -ItemType file
+    Add-Content  $HOME/.sbt/.credentials "`nrealm="
+    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
+    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
+    Add-Content  $HOME/.sbt/.credentials "`npassword=qrl54hcwbqjoee3ztwojfze37mqwqzbf4gc6whqafysuqupsdw7a"
+- script: sbt clean
+  displayName: 'Running $ sbt clean'
+- script: sbt coverage test coverageReport
+  displayName: 'Running $ scan line of code function coverageReport'
+- script: sbt coverageOff dev:assembly publish
+  displayName: 'Run $ sbt coverageOff dev:assembly publish'
+

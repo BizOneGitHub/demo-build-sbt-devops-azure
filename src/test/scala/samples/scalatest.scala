@@ -35,7 +35,7 @@ class StackSuite extends Assertions {
     val stack = new mutable.ArrayStack[Int]
     stack.push(1)
     stack.push(2)
-    assert(stack.pop() === 2)
+    assert(stack.pop() === 3)
     assert(stack.pop() === 1)
   }
 

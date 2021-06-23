@@ -5,5 +5,5 @@
 
 
 steps:
-- script: sbt "release release-version 0.1.5 with-defaults"
+- script: sbt "release release-version 0.2.5 with-defaults"
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

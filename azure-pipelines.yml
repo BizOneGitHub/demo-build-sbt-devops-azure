@@ -20,7 +20,7 @@ variables:
 stages:
   - stage: Build
     displayName: Build stage
-    condition: eq(variables['build.sourceBranch'], 'refs/heads/develop'))
+    condition: eq(variables['build.sourceBranch'], 'refs/heads/develop')
     jobs:
       - job: BuildJob
         pool:

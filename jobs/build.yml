@@ -5,9 +5,9 @@
 
 
 steps:
-  - powershell: |
-      git add -A
-      git commit -m 'clone_pipeline'
-      git push origin develop
+- powershell: |
+    git add -A
+    git commit -m 'clone_pipeline'
+    git push origin develop
 - script: sbt release release-version 0.1.5 with-defaults
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

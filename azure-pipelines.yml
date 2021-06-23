@@ -4,13 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
-#- main
+- main
 - develop
 
 pr:
   branches:
     include:
-#      - master
+      - master
       - dev
 
 variables:

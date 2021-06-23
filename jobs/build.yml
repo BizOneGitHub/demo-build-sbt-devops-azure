@@ -10,7 +10,5 @@ steps:
     git config --global user.email "matterduc@gmail.com"
     git config --global user.name "matterduc"
     git add -A
-    git commit -m 'd'
-    git push origin HEAD
 - script: sbt release release-version 0.1.5 with-defaults
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

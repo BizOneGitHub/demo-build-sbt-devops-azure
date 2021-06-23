@@ -130,7 +130,7 @@ lazy val mergeReleaseVersionAction = { st: State =>
 val mergeReleaseVersion = ReleaseStep(mergeReleaseVersionAction)
 
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
-releaseIgnoreUntrackedFiles := false
+releaseIgnoreUntrackedFiles := true
 
 
 releaseProcess := Seq[ReleaseStep](

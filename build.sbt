@@ -110,6 +110,7 @@ releaseProcess := Seq[ReleaseStep](
   inquireVersions,                        // : ReleaseStep
   runClean,                               // : ReleaseStep
   runTest,                                // : ReleaseStep
+  pushChanges,
   setReleaseVersion,
   commitReleaseVersion,
   pushChanges,                //to make sure develop branch is pulled && will merge into master and push

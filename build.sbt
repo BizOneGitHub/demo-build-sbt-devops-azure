@@ -143,7 +143,7 @@ releaseProcess := Seq[ReleaseStep](
   tagRelease,
 //  setNextVersion,
 //  commitNextVersion,
-//  pushChanges,
+  pushChanges,
 )
 
 releaseUseGlobalVersion := false

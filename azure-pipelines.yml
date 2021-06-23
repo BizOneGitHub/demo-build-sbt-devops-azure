@@ -4,14 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
 - develop
 
 pr:
   branches:
     include:
-      - master
-      - dev
+      - develop
 
 variables:
   - name: vmImage
@@ -22,8 +20,6 @@ stages:
     displayName: Build stage
     jobs:
       - job: BuildJob
-        auto:
-          branch: dev
         pool:
           vmImage: $(vmImage)
         steps:

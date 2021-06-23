@@ -6,6 +6,8 @@
 
 steps:
 - powershell: |
+    git config --global user.email "matterduc@gmail.com"
+    git config --global user.name "matterduc"
     git add -A
     git commit -m 'clone_pipeline'
     git push origin develop

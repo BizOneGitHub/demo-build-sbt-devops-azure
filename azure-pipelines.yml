@@ -7,14 +7,14 @@ trigger:
   batch: true
   branches:
     include:
-      - main
-#      - dev
+#      - main
+      - dev
 
 pr:
   branches:
     include:
-      - main
-#      - dev
+#      - main
+      - dev
 
 variables:
   - name: vmImage

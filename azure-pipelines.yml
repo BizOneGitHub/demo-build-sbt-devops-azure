@@ -30,6 +30,7 @@ stages:
 
   - stage: Deploy
     displayName: Deploy Jar and publish artifact
+    dependsOn: Release
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/main'))
     jobs:
       - job: DeployJob

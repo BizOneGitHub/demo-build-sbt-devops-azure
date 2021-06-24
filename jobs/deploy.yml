@@ -4,14 +4,28 @@
 # https://aka.ms/yaml
 
 steps:
-- powershell: |
-    $destinationFolder = $HOME+"\.sbt"
-    if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
-    New-Item $HOME/.sbt/.credentials -ItemType file
-    Add-Content  $HOME/.sbt/.credentials "`nrealm="
-    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
-    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-    Add-Content  $HOME/.sbt/.credentials "`npassword=qrl54hcwbqjoee3ztwojfze37mqwqzbf4gc6whqafysuqupsdw7a"
+- checkout: self
+  persistCredentials: true
+- task: Bash@3
+  displayName: 'set release branch'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git config --global user.email "duc.nguyen@bizone.com.vn"
+      git config --global user.name "ducnguyen452021"
+      git checkout -b main origin/main
+- task: Bash@3
+  displayName: 'connect azure artifact'
+  inputs:
+    targetType: 'inline'
+    script: |
+      $destinationFolder = $HOME+"\.sbt"
+      if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
+      New-Item $HOME/.sbt/.credentials -ItemType file
+      Add-Content  $HOME/.sbt/.credentials "`nrealm="
+      Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
+      Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
+      Add-Content  $HOME/.sbt/.credentials "`npassword=qrl54hcwbqjoee3ztwojfze37mqwqzbf4gc6whqafysuqupsdw7a"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport

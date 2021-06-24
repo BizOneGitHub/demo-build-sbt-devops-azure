@@ -1,8 +1,8 @@
 
-target/
-project/target/
-project/project/
-# Scala-IDE specific
+/target/**
+/project/target/**
+/project/project/**
+
 .cache-main
 .cache-tests
 

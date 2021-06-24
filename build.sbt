@@ -3,6 +3,9 @@ import ReleaseTransformations._
 import ReleasePlugin.autoImport._
 import sbtrelease.{Git, Utilities}
 import Utilities._
+import ReleasePlugin.autoImport._
+import sbtrelease.{Git, Utilities}
+import Utilities._
 
 ThisBuild / organization := "com.bizone"
 //ThisBuild / version := "0.0.4"
@@ -144,7 +147,6 @@ releaseProcess := Seq[ReleaseStep](
   tagRelease,
 //  setNextVersion,
 //  commitNextVersion,
-  mergeReleaseVersionAction,
   pushChanges,
 )
 

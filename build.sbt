@@ -102,29 +102,6 @@ publishTo := {
 }
 
 
-
-val deployBranch = "main"
-def merge: (State) => State = { st: State =>
-  val git = st.extract.get(releaseVcs).get.asInstanceOf[Git]
-  val curBranch = (git.cmd("rev-parse", "--abbrev-ref", "HEAD") !!).trim
-  st.log.info(s"####### current branch: $curBranch")
-  git.cmd("checkout", deployBranch) ! st.log
-  st.log.info(s"####### pull $deployBranch")
-  git.cmd("pull") ! st.log
-  st.log.info(s"####### merge")
-  git.cmd("merge", curBranch, "--no-ff", "--no-edit") ! st.log
-  st.log.info(s"####### push")
-  git.cmd("push", "origin", s"$deployBranch:$deployBranch") ! st.log
-  st.log.info(s"####### checkout $curBranch")
-  git.cmd("checkout", curBranch) ! st.log
-  st
-}
-
-lazy val mergeReleaseVersionAction = { st: State =>
-  val newState = merge(st)
-  newState
-}
-
 //publishConfiguration := publishConfiguration.value.withOverwrite(true)
 releaseIgnoreUntrackedFiles := true
 
@@ -133,11 +110,7 @@ releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,              // : ReleaseStep
   inquireVersions,                        // : ReleaseStep
   runClean,                               // : ReleaseStep
-//  runTest,                                // : ReleaseStep
-  releaseStepCommand("coverageOn"),
-  runTest,
-  releaseStepTask(coverageReport),
-  releaseStepCommand("coverageOff"),
+  runTest,                                // : ReleaseStep
   setReleaseVersion,
   commitReleaseVersion,
   pushChanges,                //to make sure develop branch is pulled && will merge into master and push

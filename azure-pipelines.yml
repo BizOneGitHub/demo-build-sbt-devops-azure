@@ -4,11 +4,13 @@
 # https://aka.ms/yaml
 
 trigger:
+- main
 - dev
 
 pr:
   branches:
     include:
+      - main
       - dev
 
 variables:
@@ -18,7 +20,7 @@ variables:
 stages:
   - stage: Build
     displayName: Build stage
-    condition: in(variables['build.sourceBranch'], 'refs/heads/master', 'refs/heads/dev')
+    condition: in(variables['build.sourceBranch'], 'refs/heads/main', 'refs/heads/dev')
     jobs:
       - job: BuildJob
         pool:

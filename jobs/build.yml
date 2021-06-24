@@ -9,7 +9,7 @@ steps:
 - checkout: self
   persistCredentials: true
 - task: Bash@3
-  displayName:"change branch dev"
+  displayName: 'change branch dev'
   inputs:
     targetType: 'inline'
     script: |

@@ -12,8 +12,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git checkout -b origin
-      git commit -m 'new branch commit'
-      git push --set-upstream origin newer-branch
+      git checkout -b origin/dev
+      git commit -m 'build release commit'
+      git push origin dev
 - script: sbt release release-version 0.1.5 with-defaults
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

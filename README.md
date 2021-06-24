@@ -42,3 +42,4 @@ https://spark.apache.org/docs/3.1.2/sql-data-sources-load-save-functions.html
 sbt "release release-version 1.2.3 next-version 1.3.0 with-defaults"
 
 https://stackoverflow.com/questions/63364782/azure-yaml-pipeline-file-strategy-in-branching
+git rm -r --cached target

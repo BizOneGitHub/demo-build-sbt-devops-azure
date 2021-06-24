@@ -20,7 +20,7 @@ variables:
 stages:
   - stage: Build
     displayName: Build stage
-    condition: in(variables['build.sourceBranch'], 'refs/heads/main', 'refs/heads/dev')
+    condition: in(variables['build.sourceBranch'], 'refs/heads/dev')
     jobs:
       - job: BuildJob
         pool:
@@ -28,18 +28,18 @@ stages:
         steps:
           - template: jobs/build.yml
 
-#  - stage: Prod
-#    displayName: Deploy prod stage
-#    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-#    jobs:
-#      - deployment: DeploymentJob2
-#        pool:
-#          vmImage: $(vmImage)
-#        environment: prod
-##        variables:
-##          - template: Variables/prod.yml
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
+  - stage: Prod
+    displayName: Deploy Dev Jar and publish artifact
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: DeploymentJob2
+        pool:
+          vmImage: $(vmImage)
+        environment: prod
+#        variables:
+#          - template: Variables/prod.yml
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml

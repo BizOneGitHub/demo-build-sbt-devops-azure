@@ -142,8 +142,8 @@ releaseProcess := Seq[ReleaseStep](
   commitReleaseVersion,
   pushChanges,                //to make sure develop branch is pulled && will merge into master and push
   tagRelease,
-  setNextVersion,
-  commitNextVersion,
+//  setNextVersion,
+//  commitNextVersion,
   pushChanges,
 )
 

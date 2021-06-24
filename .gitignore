@@ -3,10 +3,9 @@
 
 #Compiled target packages
 ######################
-target/
+/target
 project/target/
 project/project/
-.idea/
 .idea
 .bsp
 # Scala-IDE specific

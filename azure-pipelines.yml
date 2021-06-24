@@ -56,7 +56,7 @@ stages:
     dependsOn:
       - Setting
       - Release
-    condition: and(succeeded(Release), eq(variables['build.sourceBranch'], 'refs/heads/main'))
+    condition: and(succeeded('Release'), eq(variables['build.sourceBranch'], 'refs/heads/main'))
     jobs:
       - job: DeployJob
         pool:

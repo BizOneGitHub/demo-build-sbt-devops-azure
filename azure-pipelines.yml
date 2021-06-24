@@ -4,8 +4,8 @@
 # https://aka.ms/yaml
 
 trigger:
-#- main
-- dev
+- main
+#- dev
 
 pr:
   branches:
@@ -32,6 +32,7 @@ stages:
     displayName: Deploy Jar and publish artifact
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/main'))
     jobs:
+      - job: DeployJob
         pool:
           vmImage: $(vmImage)
         steps:

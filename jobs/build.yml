@@ -12,6 +12,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      git config --global user.email "duc.nguyen@bizone.com.vn"
+      git config --global user.name "ducnguyen452021"
       git checkout -b origin/dev
       git commit -m 'build release commit'
       git push origin dev

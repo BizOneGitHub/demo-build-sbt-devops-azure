@@ -16,6 +16,6 @@ steps:
       git config --global user.name "ducnguyen452021"
       git checkout origin/dev
       git commit -m 'build_release_commit'
-      git push origin dev
+      git push origin head:dev
 - script: sbt "release release-version 0.1.5 next-version 0.1.6 with-defaults"
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

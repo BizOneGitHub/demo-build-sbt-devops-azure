@@ -1,13 +1,11 @@
-*.class
-*.log
-
 #Compiled target packages
 ######################
-/target
+target/
 project/target/
 project/project/
-.idea
-.bsp
 # Scala-IDE specific
 .cache-main
 .cache-tests
+
+.idea
+.bsp

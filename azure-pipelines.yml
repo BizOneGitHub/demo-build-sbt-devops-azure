@@ -3,43 +3,43 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
+#trigger:
+#- main
 - dev
 
 pr:
   branches:
     include:
       - main
-      - dev
+#      - dev
 
 variables:
   - name: vmImage
     value: 'ubuntu-latest'
 
 stages:
-  - stage: Build
-    displayName: Build stage
+  - stage: Release
+    displayName: Release Stage
     condition: in(variables['build.sourceBranch'], 'refs/heads/dev')
     jobs:
-      - job: BuildJob
+      - job: ReleaseJob
         pool:
           vmImage: $(vmImage)
         steps:
-          - template: jobs/build.yml
+          - template: jobs/release.yml
 
-  - stage: Prod
-    displayName: Deploy Dev Jar and publish artifact
+  - stage: Deploy
+    displayName: Deploy Jar and publish artifact
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/main'))
     jobs:
-      - deployment: DeploymentJob2
         pool:
           vmImage: $(vmImage)
-        environment: prod
+        steps:
+          - template: jobs/deploy.yml
 #        variables:
 #          - template: Variables/prod.yml
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - template: jobs/deploy.yml
+#        strategy:
+#          runOnce:
+#            deploy:
+#              steps:
+#                - template: jobs/deploy.yml

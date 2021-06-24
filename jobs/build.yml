@@ -14,8 +14,8 @@ steps:
     script: |
       git config --global user.email "duc.nguyen@bizone.com.vn"
       git config --global user.name "ducnguyen452021"
-      git checkout -b origin/dev
-      git commit -m 'build release commit'
+      git checkout -b dev origin/dev
+      git commit -m 'build_release_commit'
       git push origin dev
 - script: sbt release release-version 0.1.5 with-defaults
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

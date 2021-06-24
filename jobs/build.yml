@@ -6,5 +6,7 @@
 
 steps:
 #- script: git push origin HEAD
+- checkout: self
+  persistCredentials: true
 - script: sbt release release-version 0.1.5 with-defaults
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

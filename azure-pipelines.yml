@@ -4,6 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
+batch: true
 - main
 - dev
 
@@ -11,7 +12,7 @@ pr:
   branches:
     include:
       - main
-      - dev
+#      - dev
 
 variables:
   - name: vmImage

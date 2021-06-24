@@ -7,14 +7,14 @@ trigger:
   batch: true
   branches:
     include:
-      - main
+#      - main
       - dev
 
-pr: none
-#  branches:
-#    include:
+pr:
+  branches:
+    include:
 #      - main
-#      - dev
+      - dev
 
 variables:
   - name: vmImage
@@ -23,7 +23,7 @@ variables:
 stages:
   - stage: Release
     displayName: Release Stage
-    condition: eq(variables['build.sourceBranch'], 'refs/heads/dev')
+#    condition: eq(variables['build.sourceBranch'], 'refs/heads/dev')
     jobs:
       - job: ReleaseJob
         pool:
@@ -35,7 +35,7 @@ stages:
     displayName: compile jar file and publish artifact
     dependsOn:
       - Release
-    condition: eq(variables['build.sourceBranch'], 'refs/heads/main')
+#    condition: eq(variables['build.sourceBranch'], 'refs/heads/main')
     jobs:
       - job: DeployJob
         pool:

@@ -29,19 +29,11 @@ stages:
           - template: jobs/release.yml
 
   - stage: Deploy
-    displayName: Deploy Jar and publish artifact
-    dependsOn: Release
-    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/main'))
+    displayName: compile jar file and publish artifact
+    condition: in(variables['build.sourceBranch'], 'refs/heads/main')
     jobs:
       - job: DeployJob
         pool:
           vmImage: $(vmImage)
         steps:
           - template: jobs/deploy.yml
-#        variables:
-#          - template: Variables/prod.yml
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml

@@ -115,7 +115,7 @@ def merge: (State) => State = { st: State =>
 //  git.cmd("pull") ! st.log
 //  st.log.info(s"####### merge")
 //  git.cmd("merge", curBranch, "--no-ff", "--no-edit") ! st.log
-  st.log.info(s"####### push")
+  st.log.info(s"####### push : $curBranch")
   git.cmd("push", "origin", s"$curBranch:$curBranch") ! st.log
 //  st.log.info(s"####### checkout $curBranch")
 //  git.cmd("checkout", curBranch) ! st.log

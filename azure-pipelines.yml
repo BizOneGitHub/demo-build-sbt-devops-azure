@@ -8,13 +8,13 @@ trigger:
   branches:
     include:
       - main
-      - dev
+#      - dev
 
 pr:
   branches:
     include:
       - main
-      - dev
+#      - dev
 
 variables:
   - name: vmImage

@@ -7,13 +7,13 @@ trigger:
   batch: true
   branches:
     include:
-#      - main
+      - main
       - dev
 
 pr:
   branches:
     include:
-#      - main
+      - main
       - dev
 
 variables:
@@ -23,7 +23,7 @@ variables:
 stages:
   - stage: Release
     displayName: Release Stage
-#    condition: eq(variables['build.sourceBranch'], 'refs/heads/dev')
+    condition: in(variables['build.sourceBranch'], 'refs/heads/dev')
     jobs:
       - job: ReleaseJob
         pool:
@@ -33,7 +33,7 @@ stages:
 
   - stage: Deploy
     displayName: compile jar file and publish artifact
-    condition: succeeded()
+    condition: in(variables['build.sourceBranch'], 'refs/heads/main')
     jobs:
       - job: DeployJob
         pool:

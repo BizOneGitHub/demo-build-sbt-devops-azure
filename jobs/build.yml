@@ -7,11 +7,13 @@
 steps:
 #- script: git push origin HEAD
 - checkout: self
-  clean: true
-#- poolwershell: |
-#    git checkout -b origin/dev
-#    git add -A
-#    git commit -m 'build_release'
-#    git push origin dev
+  persistCredentials: true
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      git checkout -b origin
+      git commit -m 'new branch commit'
+      git push --set-upstream origin newer-branch
 - script: sbt release release-version 0.1.5 with-defaults
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

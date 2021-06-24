@@ -117,7 +117,6 @@ releaseProcess := Seq[ReleaseStep](
   tagRelease,
 //  setNextVersion,
 //  commitNextVersion,
-  mergeReleaseVersionAction,
   pushChanges,
 )
 

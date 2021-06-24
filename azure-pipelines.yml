@@ -4,8 +4,11 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
-- dev
+  batch: true
+  branches:
+    include:
+      - main
+      - dev
 
 pr:
   branches:
@@ -18,28 +21,22 @@ variables:
     value: 'ubuntu-latest'
 
 stages:
-  - stage: Build
-    displayName: Build stage
-    condition: in(variables['build.sourceBranch'], 'refs/heads/main', 'refs/heads/dev')
+  - stage: Release
+    displayName: Release Stage
+#    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev'))
     jobs:
-      - job: BuildJob
+      - job: ReleaseJob
         pool:
           vmImage: $(vmImage)
         steps:
-          - template: jobs/build.yml
+          - template: jobs/release.yml
 
-#  - stage: Prod
-#    displayName: Deploy prod stage
-#    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-#    jobs:
-#      - deployment: DeploymentJob2
-#        pool:
-#          vmImage: $(vmImage)
-#        environment: prod
-##        variables:
-##          - template: Variables/prod.yml
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
+  - stage: Deploy
+    displayName: compile jar file and publish artifact
+    condition: succeeded()
+    jobs:
+      - job: DeployJob
+        pool:
+          vmImage: $(vmImage)
+        steps:
+          - template: jobs/deploy.yml

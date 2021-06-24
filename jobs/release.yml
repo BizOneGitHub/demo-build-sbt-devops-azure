@@ -1,0 +1,22 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+steps:
+- checkout: self
+  persistCredentials: true
+- task: Bash@3
+  displayName: 'set release branch'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git config --global user.email "duc.nguyen@bizone.com.vn"
+      git config --global user.name "ducnguyen452021"
+      git checkout -b dev origin/dev
+      git add -A
+      git commit -m 'build_release_commit'
+      git push origin dev
+- script: sbt "release release-version 2.0.15 with-defaults"
+  displayName: 'Running $ sbt "release release-version 2.0.6 with-defaults"'

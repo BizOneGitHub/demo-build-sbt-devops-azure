@@ -102,32 +102,32 @@ publishTo := {
 //}
 
 //import ReleaseTransformations._
-//import ReleasePlugin.autoImport._
-//import sbtrelease.{Git, Utilities}
-//import Utilities._
+import ReleasePlugin.autoImport._
+import sbtrelease.{Git, Utilities}
+import Utilities._
 //val deployBranch = "main"
-//def merge: (State) => State = { st: State =>
-//  val git = st.extract.get(releaseVcs).get.asInstanceOf[Git]
-//  val curBranch = (git.cmd("rev-parse", "--abbrev-ref", "HEAD") !!).trim
-//  st.log.info(s"####### current branch: $curBranch")
+def merge: (State) => State = { st: State =>
+  val git = st.extract.get(releaseVcs).get.asInstanceOf[Git]
+  val curBranch = (git.cmd("rev-parse", "--abbrev-ref", "HEAD") !!).trim
+  st.log.info(s"####### current branch: $curBranch")
 //  git.cmd("checkout", deployBranch) ! st.log
 //  st.log.info(s"####### pull $deployBranch")
 //  git.cmd("pull") ! st.log
 //  st.log.info(s"####### merge")
 //  git.cmd("merge", curBranch, "--no-ff", "--no-edit") ! st.log
-//  st.log.info(s"####### push")
-//  git.cmd("push", "origin", s"$deployBranch:$deployBranch") ! st.log
+  st.log.info(s"####### push")
+  git.cmd("push", "origin", s"$curBranch:$curBranch") ! st.log
 //  st.log.info(s"####### checkout $curBranch")
 //  git.cmd("checkout", curBranch) ! st.log
-//  st
-//}
-//
-//lazy val mergeReleaseVersionAction = { st: State =>
-//  val newState = merge(st)
-//  newState
-//}
-//
-//val mergeReleaseVersion = ReleaseStep(mergeReleaseVersionAction)
+  st
+}
+
+lazy val mergeReleaseVersionAction = { st: State =>
+  val newState = merge(st)
+  newState
+}
+
+val mergeReleaseVersion = ReleaseStep(mergeReleaseVersionAction)
 
 publishConfiguration := publishConfiguration.value.withOverwrite(true)
 releaseIgnoreUntrackedFiles := true
@@ -138,6 +138,7 @@ releaseProcess := Seq[ReleaseStep](
   inquireVersions,                        // : ReleaseStep
   runClean,                               // : ReleaseStep
   runTest,                                // : ReleaseStep
+  mergeReleaseVersionAction,
   setReleaseVersion,
   commitReleaseVersion,
   pushChanges,                //to make sure develop branch is pulled && will merge into master and push

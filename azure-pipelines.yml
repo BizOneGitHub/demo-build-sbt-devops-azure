@@ -33,9 +33,7 @@ stages:
 
   - stage: Deploy
     displayName: compile jar file and publish artifact
-    dependsOn:
-      - Release
-#    condition: eq(variables['build.sourceBranch'], 'refs/heads/main')
+    condition: succeeded()
     jobs:
       - job: DeployJob
         pool:

@@ -21,29 +21,9 @@ variables:
     value: 'ubuntu-latest'
 
 stages:
-  - stage: Setting
-    displayName: Setting Stage
-    jobs:
-      - job: SettingJob
-        pool:
-          vmImage: $(vmImage)
-        steps:
-          - checkout: self
-            persistCredentials: true
-          - task: Bash@3
-            displayName: 'set release branch'
-            inputs:
-              targetType: 'inline'
-              script: |
-                git config --global user.email "duc.nguyen@bizone.com.vn"
-                git config --global user.name "ducnguyen452021"
-                git checkout -b release/v2.0.14 origin/dev
-                git add -A
-                git commit -m 'build_release_commit'
-                git push origin release/v2.0.14
   - stage: Release
     displayName: Release Stage
-    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev'))
+#    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev'))
     jobs:
       - job: ReleaseJob
         pool:
@@ -53,10 +33,7 @@ stages:
 
   - stage: Deploy
     displayName: compile jar file and publish artifact
-    dependsOn:
-      - Setting
-      - Release
-    condition: and(succeeded('Release'), eq(variables['build.sourceBranch'], 'refs/heads/main'))
+    condition: succeeded()
     jobs:
       - job: DeployJob
         pool:

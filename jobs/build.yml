@@ -17,5 +17,5 @@ steps:
       git checkout -b dev origin/dev
       git commit -m 'build_release_commit'
       git push origin dev
-- script: sbt release release-version 0.1.5 with-defaults
+- script: sbt "release release-version 0.1.5 next-version 0.1.6 with-defaults"
   displayName: 'Running $ sbt release release-version 0.1.5 with-defaults'

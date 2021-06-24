@@ -14,7 +14,7 @@ steps:
       git config --global user.email "duc.nguyen@bizone.com.vn"
       git config --global user.name "ducnguyen452021"
       git checkout -b main origin/main
-- task: Bash@3
+- task: PowerShell@2
   displayName: 'connect azure artifact'
   inputs:
     targetType: 'inline'

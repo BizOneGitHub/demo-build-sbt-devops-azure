@@ -21,15 +21,15 @@ variables:
     value: 'ubuntu-latest'
 
 stages:
-  - stage: Release
-    displayName: Release Stage
-#    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev'))
-    jobs:
-      - job: ReleaseJob
-        pool:
-          vmImage: $(vmImage)
-        steps:
-          - template: jobs/release.yml
+#  - stage: Release
+#    displayName: Release Stage
+##    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev'))
+#    jobs:
+#      - job: ReleaseJob
+#        pool:
+#          vmImage: $(vmImage)
+#        steps:
+#          - template: jobs/release.yml
 
   - stage: Deploy
     displayName: compile jar file and publish artifact

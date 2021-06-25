@@ -10,6 +10,6 @@ variables:
     value: 'ksa3yky5cyrygecxjodthcgy3iilcmibostl7bq4kmiwfmvk7z6q'
 # authentication Github
   - name: user.email
-      value: 'duc.nguyen@bizone.com.vn'
+    value: 'duc.nguyen@bizone.com.vn'
   - name: user.name
-      value: 'ducnguyen452021'
+    value: 'ducnguyen452021'

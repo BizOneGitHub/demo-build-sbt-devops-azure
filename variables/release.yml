@@ -5,4 +5,4 @@ variables:
   - name: user.name
     value: 'ducnguyen452021'
   - name: release_version
-    value: '2.0.27'
+    value: '2.0.28'

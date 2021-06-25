@@ -32,10 +32,10 @@ stages:
           - template: jobs/release.yml
 
   - stage: Deploy
-    displayName: compile jar file and publish artifact
+    displayName: Deploy Stage
     condition: succeeded()
     jobs:
-      - job: DeployJob
+      - deployment: Deploy
         pool:
           vmImage: $(vmImage)
         steps:

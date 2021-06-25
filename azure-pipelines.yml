@@ -32,10 +32,10 @@ stages:
           - template: jobs/release.yml
 
   - stage: Deploy
-    displayName: Deploy Stage
+    displayName: Deploy and Publish Stage
     condition: succeeded()
     jobs:
-      - deployment: Deploy
+      - job: DeployJob
         pool:
           vmImage: $(vmImage)
         steps:

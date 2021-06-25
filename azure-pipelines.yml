@@ -32,7 +32,7 @@ stages:
           - template: jobs/release.yml
 
   - stage: Deploy
-    displayName: compile jar file and publish artifact
+    displayName: Deploy and Publish Stage
     condition: succeeded()
     jobs:
       - job: DeployJob

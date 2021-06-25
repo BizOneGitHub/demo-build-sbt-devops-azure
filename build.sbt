@@ -1,11 +1,6 @@
 import sbt.Keys.{isSnapshot, publishTo}
+
 import ReleaseTransformations._
-import ReleasePlugin.autoImport._
-import sbtrelease.{Git, Utilities}
-import Utilities._
-import ReleasePlugin.autoImport._
-import sbtrelease.{Git, Utilities}
-import Utilities._
 
 ThisBuild / organization := "com.bizone"
 //ThisBuild / version := "0.0.4"
@@ -105,7 +100,6 @@ publishTo := {
 }
 
 
-//publishConfiguration := publishConfiguration.value.withOverwrite(true)
 releaseIgnoreUntrackedFiles := true
 
 

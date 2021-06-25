@@ -99,25 +99,25 @@ publishTo := {
     Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
 }
 
-//
-//releaseIgnoreUntrackedFiles := true
-//
-//
-//releaseProcess := Seq[ReleaseStep](
-//  checkSnapshotDependencies,              // : ReleaseStep
-//  inquireVersions,                        // : ReleaseStep
-//  runClean,                               // : ReleaseStep
-//  runTest,                                // : ReleaseStep
-//  setReleaseVersion,
-//  commitReleaseVersion,
-//  pushChanges,                //to make sure develop branch is pulled && will merge into master and push
-//  tagRelease,
-////  setNextVersion,
-////  commitNextVersion,
-//  pushChanges,
-//)
-//
-//releaseUseGlobalVersion := false
+
+releaseIgnoreUntrackedFiles := true
+
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,              // : ReleaseStep
+  inquireVersions,                        // : ReleaseStep
+  runClean,                               // : ReleaseStep
+  runTest,                                // : ReleaseStep
+  setReleaseVersion,
+  commitReleaseVersion,
+  pushChanges,                //to make sure develop branch is pulled && will merge into master and push
+  tagRelease,
+//  setNextVersion,
+//  commitNextVersion,
+  pushChanges,
+)
+
+releaseUseGlobalVersion := false
 /*
 
  */

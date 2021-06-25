@@ -1,6 +1,6 @@
 import sbt.Keys.{isSnapshot, publishTo}
 
-//import ReleaseTransformations._
+import ReleaseTransformations._
 
 ThisBuild / organization := "com.bizone"
 //ThisBuild / version := "0.0.4"

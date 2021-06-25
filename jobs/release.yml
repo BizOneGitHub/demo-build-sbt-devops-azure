@@ -15,3 +15,9 @@ steps:
       git push origin release/v$(release_version)
 - script: sbt "release release-version $(release_version) with-defaults"
   displayName: 'Running $ sbt "release release-version $(release_version) with-defaults"'
+- task: Bash@3
+  displayName: 'delete release/v$(release_version) branch'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git push origin --delete release/v$(release_version)

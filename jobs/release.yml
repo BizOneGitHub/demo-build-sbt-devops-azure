@@ -19,7 +19,7 @@ steps:
       git add -A
       git commit -m 'build_release_commit'
       git push origin dev
-- script: sbt "release release-version 2.0.22 with-defaults"
+- script: sbt "release release-version 2.0.23 with-defaults"
   displayName: 'Running $ sbt "release release-version 2.0.21 with-defaults"'
 - task: Bash@3
   displayName: 'update release version dev Branch'

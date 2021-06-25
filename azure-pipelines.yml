@@ -3,11 +3,11 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-  batch: true
-  branches:
-    include:
-      - dev
+#trigger:
+#  batch: true
+#  branches:
+#    include:
+#      - dev
 
 pr:
   branches:

@@ -21,7 +21,7 @@ steps:
     Add-Content  $HOME/.sbt/.credentials "`nrealm="
     Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
     Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-    Add-Content  $HOME/.sbt/.credentials "`npassword=6senz44huozzuinaii7j3qitfdgyfi44ykf66fahs4mnkkxhfjtq"
+    Add-Content  $HOME/.sbt/.credentials "`npassword=ksa3yky5cyrygecxjodthcgy3iilcmibostl7bq4kmiwfmvk7z6q"
 #- task: PowerShell@2
 #  displayName: 'connect azure artifact'
 #  inputs:

@@ -1,5 +1,5 @@
 variables:
-  - name: branch
+  - name: deploy_branch
     value: 'main'
 # credentials
   - name: host

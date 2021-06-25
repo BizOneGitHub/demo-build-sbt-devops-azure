@@ -118,6 +118,3 @@ releaseProcess := Seq[ReleaseStep](
 )
 
 releaseUseGlobalVersion := false
-/*
-
- */

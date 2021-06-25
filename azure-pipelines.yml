@@ -8,6 +8,9 @@ trigger:
   branches:
     include:
       - dev
+      - release
+      - main
+
 
 #pr:
 #  branches:
@@ -21,46 +24,47 @@ variables:
     value: 'ubuntu-latest'
 
 stages:
-  - stage: Release
-    displayName: Release Stage
-    jobs:
-      - job: ReleaseJob
-        pool:
-          vmImage: $(vmImage)
-        variables:
-          - template: variables/release.yml
-        steps:
-          - template: jobs/release.yml
+#  - stage: Release
+#    displayName: Release Stage
+#    jobs:
+#      - job: ReleaseJob
+#        pool:
+#          vmImage: $(vmImage)
+#        condition: succeeded('Release'), run dev
+#        variables:
+#          - template: variables/release.yml
+#        steps:
+#          - template: jobs/release.yml
+#
+#  - stage: RollBackRelease
+#    displayName: RollBack Release Stage
+#    dependsOn: Release
+#    condition: failed('Release')
+#    jobs:
+#      - job: RollBackReleaseJob
+#        pool:
+#          vmImage: $(vmImage)
+#        variables:
+#          - template: variables/release.yml
+#        steps:
+#          - template: jobs/rollback.yml
 
-  - stage: RollBackRelease
-    displayName: RollBack Release Stage
-    dependsOn: Release
-    condition: failed('Release')
-    jobs:
-      - job: RollBackReleaseJob
-        pool:
-          vmImage: $(vmImage)
-        variables:
-          - template: variables/release.yml
-        steps:
-          - template: jobs/rollback.yml
-
-  - stage: DeployProd
+  - stage: ReleaseSgtProd
     displayName: Deploy and Publish Stage
-    dependsOn: Release
-    condition: succeeded('Release')
+#    dependsOn: Release
+#    condition: succeeded('Release'), run release, user_approved
     jobs:
-#      - deployment: DeploymentJob
-      - job: DeployJob
+      - deployment: DeploymentJob
+#      - job: DeployJob
         pool:
           vmImage: $(vmImage)
         variables:
           - template: variables/deploy-prod.yml
         steps:
           - template: jobs/deploy.yml
-#        environment: prod
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
+        environment: prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml

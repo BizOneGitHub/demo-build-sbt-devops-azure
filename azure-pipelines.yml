@@ -29,7 +29,7 @@ stages:
         pool:
           vmImage: $(vmImage)
         variables:
-          - template: Variables/release.yml
+          - template: variables/release.yml
         steps:
           - template: jobs/release.yml
 

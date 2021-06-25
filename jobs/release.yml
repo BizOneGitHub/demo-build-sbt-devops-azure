@@ -6,8 +6,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git config --global user.email "duc.nguyen@bizone.com.vn"
-      git config --global user.name "ducnguyen452021"
+      git config --global user.email "$(user.email)"
+      git config --global user.name "$(user.name)"
       git checkout -b release/v$(release_version) origin/main
       git merge origin/dev
       git add -A

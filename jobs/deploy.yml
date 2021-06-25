@@ -11,17 +11,17 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      git config --global user.email "duc.nguyen@bizone.com.vn"
-      git config --global user.name "ducnguyen452021"
-      git checkout -b main origin/main
+      git config --global user.email "$(user.email)"
+      git config --global user.name "$(user.name)"
+      git checkout -b $(branch) origin/$(branch)
 - powershell: |
     $destinationFolder = $HOME+"\.sbt"
     if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
     New-Item $HOME/.sbt/.credentials -ItemType file
     Add-Content  $HOME/.sbt/.credentials "`nrealm="
-    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
-    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-    Add-Content  $HOME/.sbt/.credentials "`npassword=ksa3yky5cyrygecxjodthcgy3iilcmibostl7bq4kmiwfmvk7z6q"
+    Add-Content  $HOME/.sbt/.credentials "`nhost=$(host)"
+    Add-Content  $HOME/.sbt/.credentials "`nuser=$(user)"
+    Add-Content  $HOME/.sbt/.credentials "`npassword=$(password)"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport coverageOff

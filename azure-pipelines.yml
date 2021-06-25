@@ -45,13 +45,22 @@ stages:
         steps:
           - template: jobs/rollback.yml
 
-  - stage: Deploy
+  - stage: DeployProd
     displayName: Deploy and Publish Stage
     dependsOn: Release
     condition: succeeded('Release')
     jobs:
+#      - deployment: DeploymentJob
       - job: DeployJob
         pool:
           vmImage: $(vmImage)
+        variables:
+          - template: variables/deploy-prod.yml
         steps:
           - template: jobs/deploy.yml
+#        environment: prod
+#        strategy:
+#          runOnce:
+#            deploy:
+#              steps:
+#                - template: jobs/deploy.yml

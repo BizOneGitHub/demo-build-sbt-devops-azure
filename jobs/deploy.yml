@@ -4,16 +4,16 @@
 # https://aka.ms/yaml
 
 steps:
-- checkout: self
-  persistCredentials: true
-- task: Bash@3
-  displayName: 'set release branch'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git config --global user.email "duc.nguyen@bizone.com.vn"
-      git config --global user.name "ducnguyen452021"
-      git checkout -b main origin/main
+#- checkout: self
+#  persistCredentials: true
+#- task: Bash@3
+#  displayName: 'set release branch'
+#  inputs:
+#    targetType: 'inline'
+#    script: |
+#      git config --global user.email "duc.nguyen@bizone.com.vn"
+#      git config --global user.name "ducnguyen452021"
+#      git checkout -b main origin/main
 - task: PowerShell@2
   displayName: 'connect azure artifact'
   inputs:

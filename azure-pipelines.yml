@@ -54,14 +54,14 @@ stages:
 #    dependsOn: Release
 #    condition: succeeded('Release'), run release, user_approved
     jobs:
-#      - deployment: DeploymentJob
+      - deployment: DeploymentJob
 #      - job: DeployJob
         pool:
           vmImage: $(vmImage)
         variables:
           - template: variables/deploy-prod.yml
-        steps:
-          - template: jobs/deploy.yml
+#        steps:
+#          - template: jobs/deploy.yml
         environment: prod
         strategy:
           runOnce:

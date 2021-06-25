@@ -50,7 +50,7 @@ stages:
 #          - template: jobs/rollback.yml
 
   - stage: ReleaseSgtProd
-    displayName: Deploy and Publish Stage
+    displayName: Deploy UT Stage
 #    dependsOn: Release
 #    condition: succeeded('Release'), run release, user_approved
     jobs:
@@ -69,7 +69,7 @@ stages:
               steps:
                 - template: jobs/deploy.yml
   - stage: ITStage
-    displayName: Deploy and Publish Stage
+    displayName: Deploy IT Stage
     dependsOn: ReleaseSgtProd
     condition: succeeded('ReleaseSgtProd')
     jobs:
@@ -88,22 +88,22 @@ stages:
               steps:
                 - template: jobs/deploy.yml
 
-#  - stage: UATStage
-#    displayName: Deploy and Publish Stage
-#    dependsOn: ITStage
-#    condition: succeeded('ITStage')
-#    jobs:
-#      - deployment: DeploymentJob
-#        #      - job: DeployJob
-#        pool:
-#          vmImage: $(vmImage)
-#        variables:
-#          - template: variables/deploy-prod.yml
-#        #        steps:
-#        #          - template: jobs/deploy.yml
-#        environment: UAT
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
+  - stage: UATStage
+    displayName: Deploy UAT Stage
+    dependsOn: ITStage
+    condition: succeeded('ITStage')
+    jobs:
+      - deployment: DeploymentUATJob
+        #      - job: DeployJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/deploy-prod.yml
+        #        steps:
+        #          - template: jobs/deploy.yml
+        environment: UAT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml

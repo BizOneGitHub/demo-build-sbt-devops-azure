@@ -1,11 +1,5 @@
 import sbt.Keys.{isSnapshot, publishTo}
 import ReleaseTransformations._
-import ReleasePlugin.autoImport._
-import sbtrelease.{Git, Utilities}
-import Utilities._
-import ReleasePlugin.autoImport._
-import sbtrelease.{Git, Utilities}
-import Utilities._
 
 ThisBuild / organization := "com.bizone"
 //ThisBuild / version := "0.0.4"
@@ -104,26 +98,25 @@ publishTo := {
     Some("release" at "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/")
 }
 
-
-//publishConfiguration := publishConfiguration.value.withOverwrite(true)
-releaseIgnoreUntrackedFiles := true
-
-
-releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,              // : ReleaseStep
-  inquireVersions,                        // : ReleaseStep
-  runClean,                               // : ReleaseStep
-  runTest,                                // : ReleaseStep
-  setReleaseVersion,
-  commitReleaseVersion,
-  pushChanges,                //to make sure develop branch is pulled && will merge into master and push
-  tagRelease,
-//  setNextVersion,
-//  commitNextVersion,
-  pushChanges,
-)
-
-releaseUseGlobalVersion := false
+//
+//releaseIgnoreUntrackedFiles := true
+//
+//
+//releaseProcess := Seq[ReleaseStep](
+//  checkSnapshotDependencies,              // : ReleaseStep
+//  inquireVersions,                        // : ReleaseStep
+//  runClean,                               // : ReleaseStep
+//  runTest,                                // : ReleaseStep
+//  setReleaseVersion,
+//  commitReleaseVersion,
+//  pushChanges,                //to make sure develop branch is pulled && will merge into master and push
+//  tagRelease,
+////  setNextVersion,
+////  commitNextVersion,
+//  pushChanges,
+//)
+//
+//releaseUseGlobalVersion := false
 /*
 
  */

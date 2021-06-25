@@ -3,19 +3,19 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-#trigger:
-#  batch: true
-#  branches:
-#    include:
-#      - dev
-
-pr:
+trigger:
+  batch: true
   branches:
     include:
       - dev
-  paths:
-    exclude:
-      - version.sbt
+
+#pr:
+#  branches:
+#    include:
+#      - dev
+#  paths:
+#    exclude:
+#      - version.sbt
 variables:
   - name: vmImage
     value: 'ubuntu-latest'

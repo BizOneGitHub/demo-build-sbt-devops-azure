@@ -14,18 +14,10 @@ steps:
     script: |
       git config --global user.email "duc.nguyen@bizone.com.vn"
       git config --global user.name "ducnguyen452021"
-      git checkout -b dev origin/main
+      git checkout -b release/new origin/main
       git merge origin/dev
       git add -A
       git commit -m 'build_release_commit'
-      git push origin dev
-- script: sbt "release release-version 2.0.23 with-defaults"
+      git push origin release/new
+- script: sbt "release release-version 2.0.24 with-defaults"
   displayName: 'Running $ sbt "release release-version 2.0.21 with-defaults"'
-- task: Bash@3
-  displayName: 'update release version dev Branch'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git add -A
-      git commit -m 'build_release_commit'
-      git push origin dev

@@ -4,16 +4,16 @@
 # https://aka.ms/yaml
 
 steps:
-- checkout: self
-  persistCredentials: true
-- task: Bash@3
-  displayName: 'set main branch'
-  inputs:
-    targetType: 'inline'
-    script: |
-      git config --global user.email "$(user.email)"
-      git config --global user.name "$(user.name)"
-      git checkout -b $(deploy_branch) origin/$(deploy_branch)
+#- checkout: self
+#  persistCredentials: true
+#- task: Bash@3
+#  displayName: 'set main branch'
+#  inputs:
+#    targetType: 'inline'
+#    script: |
+#      git config --global user.email "$(user.email)"
+#      git config --global user.name "$(user.name)"
+#      git checkout -b $(deploy_branch) origin/$(deploy_branch)
 - powershell: |
     $destinationFolder = $HOME+"\.sbt"
     if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}

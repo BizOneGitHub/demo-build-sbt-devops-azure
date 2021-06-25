@@ -1,9 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-
 steps:
 - checkout: self
   persistCredentials: true
@@ -14,10 +8,10 @@ steps:
     script: |
       git config --global user.email "duc.nguyen@bizone.com.vn"
       git config --global user.name "ducnguyen452021"
-      git checkout -b release/new origin/main
+      git checkout -b release/v$(release_version) origin/main
       git merge origin/dev
       git add -A
       git commit -m 'build_release_commit'
-      git push origin release/new
-- script: sbt "release release-version 2.0.24 with-defaults"
-  displayName: 'Running $ sbt "release release-version 2.0.21 with-defaults"'
+      git push origin release/v$(release_version)
+- script: sbt "release release-version $(release_version) with-defaults"
+  displayName: 'Running $ sbt "release release-version $(release_version) with-defaults"'

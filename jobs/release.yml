@@ -13,5 +13,5 @@ steps:
       git add -A
       git commit -m 'build_release_commit'
       git push origin release/v$(release_version)
-- script: sbt s"release release-version $(release_version) with-defaults"
-  displayName: s'Running $ sbt "release release-version (release_version) with-defaults"'
+- script: sbt "release release-version $(release_version) with-defaults"
+  displayName: 'Running $ sbt "release release-version $(release_version) with-defaults"'

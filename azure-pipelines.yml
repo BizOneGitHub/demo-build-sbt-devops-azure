@@ -7,15 +7,15 @@ trigger:
   batch: true
   branches:
     include:
-#      - main
       - dev
 
 pr:
   branches:
     include:
-#      - main
       - dev
-
+  paths:
+    exclude:
+      - version.sbt
 variables:
   - name: vmImage
     value: 'ubuntu-latest'

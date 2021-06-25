@@ -14,22 +14,30 @@ steps:
 #      git config --global user.email "duc.nguyen@bizone.com.vn"
 #      git config --global user.name "ducnguyen452021"
 #      git checkout -b main origin/main
-- task: PowerShell@2
-  displayName: 'connect azure artifact'
-  inputs:
-    targetType: 'inline'
-    script: |
-      $destinationFolder = $HOME+"\.sbt"
-      if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
-      New-Item $HOME/.sbt/.credentials -ItemType file
-      Add-Content  $HOME/.sbt/.credentials "`nrealm="
-      Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
-      Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-      Add-Content  $HOME/.sbt/.credentials "`npassword=6senz44huozzuinaii7j3qitfdgyfi44ykf66fahs4mnkkxhfjtq"
+- powershell: |
+    $destinationFolder = $HOME+"\.sbt"
+    if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
+    New-Item $HOME/.sbt/.credentials -ItemType file
+    Add-Content  $HOME/.sbt/.credentials "`nrealm="
+    Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
+    Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
+    Add-Content  $HOME/.sbt/.credentials "`npassword=6senz44huozzuinaii7j3qitfdgyfi44ykf66fahs4mnkkxhfjtq"
+#- task: PowerShell@2
+#  displayName: 'connect azure artifact'
+#  inputs:
+#    targetType: 'inline'
+#    script: |
+#      $destinationFolder = $HOME+"\.sbt"
+#      if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
+#      New-Item $HOME/.sbt/.credentials -ItemType file
+#      Add-Content  $HOME/.sbt/.credentials "`nrealm="
+#      Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
+#      Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
+#      Add-Content  $HOME/.sbt/.credentials "`npassword=6senz44huozzuinaii7j3qitfdgyfi44ykf66fahs4mnkkxhfjtq"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
 #- script: sbt coverage test coverageReport coverageOff
 #  displayName: 'Running $ scan line of code function coverageReport'
-- script: sbt dev:assembly publish
+- script: sbt coverageOff dev:assembly publish
   displayName: 'Run $ sbt coverageOff dev:assembly publish'
 

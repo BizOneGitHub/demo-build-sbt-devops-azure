@@ -1,6 +1,5 @@
 import sbt.Keys.{isSnapshot, publishTo}
 
-import scala.tools.nsc.io.Path
 //import ReleaseTransformations._
 
 ThisBuild / organization := "com.bizone"

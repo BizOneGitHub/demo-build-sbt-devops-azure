@@ -8,10 +8,10 @@ steps:
     script: |
       git config --global user.email "duc.nguyen@bizone.com.vn"
       git config --global user.name "ducnguyen452021"
-      git checkout -b release/new origin/main
+      git checkout -b release/v$(release_version) origin/main
       git merge origin/dev
       git add -A
       git commit -m 'build_release_commit'
-      git push origin release/new
+      git push origin release/v$(release_version)
 - script: sbt s"release release-version $(release_version) with-defaults"
   displayName: s'Running $ sbt "release release-version (release_version) with-defaults"'

@@ -48,50 +48,50 @@ stages:
 #          - template: variables/release.yml
 #        steps:
 #          - template: jobs/rollback.yml
-- stage: UTStage
-  displayName: Deploy and Publish Stage
-  #    dependsOn: Release
-  #    condition: succeeded('Release'), run release, user_approved
-  jobs:
-    - deployment: DeploymentJob
-      #      - job: DeployJob
-      pool:
-        vmImage: $(vmImage)
-      variables:
-        - template: variables/deploy-prod.yml
-      #        steps:
-      #          - template: jobs/deploy.yml
-      environment: UT
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-              - template: jobs/deploy.yml
 
-- stage: ITStage
-  displayName: Deploy and Publish Stage
+  - stage: ReleaseSgtProd
+    displayName: Deploy and Publish Stage
 #    dependsOn: Release
 #    condition: succeeded('Release'), run release, user_approved
-  jobs:
-    - deployment: DeploymentJob
+    jobs:
+#      - deployment: DeploymentJob
 #      - job: DeployJob
-      pool:
-        vmImage: $(vmImage)
-      variables:
-        - template: variables/deploy-prod.yml
-#        steps:
-#          - template: jobs/deploy.yml
-      environment: IT
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-              - template: jobs/deploy.yml
-                -
-- stage: UATStage
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/deploy-prod.yml
+        steps:
+          - template: jobs/deploy.yml
+        environment: prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml
+  - stage: ITStage
     displayName: Deploy and Publish Stage
-    #    dependsOn: Release
-    #    condition: succeeded('Release'), run release, user_approved
+    dependsOn: ReleaseSgtProd
+    condition: succeeded('ReleaseSgtProd')
+    jobs:
+      - deployment: DeploymentJob
+        #      - job: DeployJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/deploy-prod.yml
+        #        steps:
+        #          - template: jobs/deploy.yml
+        environment: IT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml
+                    -
+  - stage: UATStage
+    displayName: Deploy and Publish Stage
+    dependsOn: ITStage
+    condition: succeeded('ITStage')
     jobs:
       - deployment: DeploymentJob
         #      - job: DeployJob

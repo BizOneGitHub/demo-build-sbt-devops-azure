@@ -25,11 +25,11 @@ steps:
       Add-Content  $HOME/.sbt/.credentials "`nrealm="
       Add-Content  $HOME/.sbt/.credentials "`nhost=bizonedev.pkgs.visualstudio.com"
       Add-Content  $HOME/.sbt/.credentials "`nuser=BizOneDev"
-      Add-Content  $HOME/.sbt/.credentials "`npassword=qrl54hcwbqjoee3ztwojfze37mqwqzbf4gc6whqafysuqupsdw7a"
+      Add-Content  $HOME/.sbt/.credentials "`npassword=6senz44huozzuinaii7j3qitfdgyfi44ykf66fahs4mnkkxhfjtq"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
-#- script: sbt coverage test coverageReport
+#- script: sbt coverage test coverageReport coverageOff
 #  displayName: 'Running $ scan line of code function coverageReport'
-- script: sbt coverageOff dev:assembly publish
+- script: sbt dev:assembly publish
   displayName: 'Run $ sbt coverageOff dev:assembly publish'
 

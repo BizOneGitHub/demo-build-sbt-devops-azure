@@ -23,7 +23,6 @@ variables:
 stages:
   - stage: Release
     displayName: Release Stage
-#    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/dev'))
     jobs:
       - job: ReleaseJob
         pool:
@@ -32,18 +31,20 @@ stages:
           - template: variables/release.yml
         steps:
           - template: jobs/release.yml
-- stage: RollBackRelease
-  displayName: RollBack Release Stage
-  dependsOn: Release
-  condition: failed('Release')
-  jobs:
-    - job: RollBackReleaseJob
-      pool:
-        vmImage: $(vmImage)
-      variables:
-        - template: variables/release.yml
-      steps:
-        - template: jobs/rollback.yml
+
+  - stage: RollBackRelease
+    displayName: RollBack Release Stage
+    dependsOn: Release
+    condition: failed('Release')
+    jobs:
+      - job: RollBackReleaseJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/release.yml
+        steps:
+          - template: jobs/rollback.yml
+
   - stage: Deploy
     displayName: Deploy and Publish Stage
     dependsOn: Release

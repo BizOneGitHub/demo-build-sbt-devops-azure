@@ -55,7 +55,7 @@ stages:
         pool:
           vmImage: $(vmImage)
         variables:
-          - template: variables/develop-prod.yml
+          - template: variables/deploy-prod.yml
         steps:
           - template: jobs/deploy.yml
 #        environment: prod

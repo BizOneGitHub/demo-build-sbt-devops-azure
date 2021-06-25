@@ -68,26 +68,26 @@ stages:
             deploy:
               steps:
                 - template: jobs/deploy.yml
-#  - stage: ITStage
-#    displayName: Deploy and Publish Stage
-#    dependsOn: ReleaseSgtProd
-#    condition: succeeded('ReleaseSgtProd')
-#    jobs:
-#      - deployment: DeploymentJob
-#        #      - job: DeployJob
-#        pool:
-#          vmImage: $(vmImage)
-#        variables:
-#          - template: variables/deploy-prod.yml
-#        #        steps:
-#        #          - template: jobs/deploy.yml
-#        environment: IT
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
-#                    -
+  - stage: ITStage
+    displayName: Deploy and Publish Stage
+    dependsOn: ReleaseSgtProd
+    condition: succeeded('ReleaseSgtProd')
+    jobs:
+      - deployment: DeploymentITJob
+        #      - job: DeployJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/deploy-prod.yml
+        #        steps:
+        #          - template: jobs/deploy.yml
+        environment: IT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml
+
 #  - stage: UATStage
 #    displayName: Deploy and Publish Stage
 #    dependsOn: ITStage

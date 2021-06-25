@@ -62,7 +62,7 @@ stages:
           - template: variables/deploy-prod.yml
 #        steps:
 #          - template: jobs/deploy.yml
-        environment: prod
+        environment:UT
         strategy:
           runOnce:
             deploy:

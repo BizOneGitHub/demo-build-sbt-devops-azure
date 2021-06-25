@@ -2,7 +2,7 @@ steps:
 - checkout: self
   persistCredentials: true
 - task: Bash@3
-  displayName: 'set release branch'
+  displayName: 'set raw release branch'
   inputs:
     targetType: 'inline'
     script: |
@@ -16,7 +16,7 @@ steps:
 - script: sbt "release release-version $(release_version) with-defaults"
   displayName: 'Running $ sbt "release release-version $(release_version) with-defaults"'
 - task: Bash@3
-  displayName: 'delete release/v$(release_version) branch'
+  displayName: 'delete raw release/v$(release_version) branch'
   inputs:
     targetType: 'inline'
     script: |

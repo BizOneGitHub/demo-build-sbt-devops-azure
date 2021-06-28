@@ -8,4 +8,4 @@ variables:
     value: '2.0.29'
 #Release branch
   - name: release_branch
-    value: 'main'
+    value: 'uat'

@@ -28,7 +28,7 @@ stages:
       - job: ReleaseJob
         pool:
           vmImage: $(vmImage)
-        condition: succeeded('Release'), run dev
+        condition: succeeded('Release')
         variables:
           - template: variables/release-ut.yml
         steps:

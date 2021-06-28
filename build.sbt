@@ -111,13 +111,10 @@ releaseProcess := Seq[ReleaseStep](
   setReleaseVersion,
   commitReleaseVersion,
   pushChanges,                //to make sure develop branch is pulled && will merge into master and push
-  tagRelease,
+//  tagRelease,
 //  setNextVersion,
 //  commitNextVersion,
-  pushChanges,
+//  pushChanges,
 )
 
 releaseUseGlobalVersion := false
-/*
-
- */

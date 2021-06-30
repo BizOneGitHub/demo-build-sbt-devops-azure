@@ -125,7 +125,7 @@ releaseProcess := Seq[ReleaseStep](
   runTest, // : ReleaseStep
   setReleaseVersion,
   commitReleaseVersion,
-  pushChanges //to make sure develop branch is pulled && will merge into master and push
+  pushChanges, //to make sure develop branch is pulled && will merge into master and push
   tagRelease,
   //  setNextVersion,
   //  commitNextVersion,

@@ -30,10 +30,10 @@ lazy val commonSettings = Seq(
     "-language:postfixOps",
     "-language:implicitConversions",
     "-unchecked",
-    "-target:jvm-1.8",
-    s"-Xplugin:${baseDirectory.value} /target/${name.value}-${version.value}.jar",
-    "-P:linter:printWarningNames:true",
-    "-P:linter:enable-only:UseHypot+CloseSourceFile+OptionOfOption"
+    "-target:jvm-1.8"
+//    s"-Xplugin:${baseDirectory.value} /target/${name.value}-${version.value}.jar",
+//    "-P:linter:printWarningNames:false",
+//    "-P:linter:enable-only:UseHypot+CloseSourceFile+OptionOfOption"
   ),
   fork := true,
   javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
@@ -42,10 +42,9 @@ lazy val commonSettings = Seq(
 ThisBuild / libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.4.1",
   "org.scalatest" %% "scalatest" % "3.0.0" % "test",
-  "org.specs2" % "specs2-core_2.12" % "4.2.0",
-  "org.specs2" % "specs2-junit_2.12" % "4.2.0",
   "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided",
-  "junit" % "junit" % "4.11" % Test
+  "junit" % "junit" % "4.11" % Test,
+  "org.mockito" %% "mockito-scala" % "1.16.37" % "test"
 )
 
 lazy val Prod = config("prod").extend(Compile).describedAs("scope to build production packages")

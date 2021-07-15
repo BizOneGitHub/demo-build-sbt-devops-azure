@@ -42,7 +42,7 @@ lazy val commonSettings = Seq(
 ThisBuild / libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.4.1",
   "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided",
-  "org.scalatest" %% "scalatest" % "3.2.9" % "test",
+  "org.scalatest" %% "scalatest" % "3.0.0" % "test",
   "junit" % "junit" % "4.11" % Test,
   "org.mockito" %% "mockito-scala" % "1.16.37" % "test"
 )

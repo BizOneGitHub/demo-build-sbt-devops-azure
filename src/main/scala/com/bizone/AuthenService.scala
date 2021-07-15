@@ -9,7 +9,7 @@ class AuthenService(service: LoginService, logic: Logic) {
 
   def auth(userName: String, password: String): String = {
     val isLogin = service.login(userName, password)
-    var result = _
+    var result = ""
     if(isLogin){
       result = "OK"
     }else{

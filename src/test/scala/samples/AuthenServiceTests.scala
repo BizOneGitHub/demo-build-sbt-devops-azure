@@ -28,7 +28,7 @@ class AuthenServiceTests extends FunSuite with BeforeAndAfter with MockitoSugar 
     val joehacker = authenService.auth("joehacker", "secret")
 
     // (4) verify the results
-    assertEquals("Ok", johndoe)
+    assertEquals("OK", johndoe)
     assertEquals("NG", joehacker)
 
   }

@@ -44,6 +44,8 @@ ThisBuild / libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided",
   "org.scalatest" %% "scalatest" % "3.0.0" % "test",
   "junit" % "junit" % "4.11" % Test,
+  "org.specs2" % "specs2-core_2.12" % "4.2.0",
+  "org.specs2" % "specs2-junit_2.12" % "4.2.0",
   "org.mockito" %% "mockito-scala" % "1.16.37" % "test"
 )
 
@@ -84,7 +86,7 @@ lazy val app = project
     )
   )
 
-coverageMinimum := 0
+coverageMinimum := 50
 
 coverageFailOnMinimum := true
 

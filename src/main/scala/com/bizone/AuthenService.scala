@@ -26,15 +26,20 @@ class AuthenService(service: LoginService, logic: Logic) {
     return logic.total(a, b) > 10
   }
 
-  def checkDiv(a: Int, b: Int, c: Int): Int = {
-    return logic.total(a, b) / c
+  def checkDiv(a: Int, b: Int, c: Int): Float = {
+    return logic.div(a, b) / c
   }
 
   def checkShow(a: Int) {
     logic.show(a)
   }
 
-  def checkThrowDiv(a: Int, b: Int): Float = {
-    return logic.div(a, b)
+  def checkThrowDiv(a: Int, b: Int): String = {
+    try{
+      logic.div(a, b)
+    }catch{
+      case e: Exception => return "error_code_011"
+    }
+    return logic.div(a, b).toString()
   }
 }

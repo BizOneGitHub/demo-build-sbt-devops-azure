@@ -1,11 +1,11 @@
-package samples
+package com.bizone
 
-import com.bizone.{AuthenService, Logic, LoginService, RealLoginService, User}
+import com.bizone.{AuthenService, Logic, LoginService, User}
 import org.junit.Assert.{assertEquals, assertFalse, assertTrue}
 import org.mockito.MockitoSugar
 import org.scalatest.{BeforeAndAfter, FunSuite}
 
-class AuthenServiceTests extends FunSuite with BeforeAndAfter with MockitoSugar {
+class AuthedServiceTests extends FunSuite with BeforeAndAfter with MockitoSugar {
 
   var service: LoginService = _
   var logic: Logic = _
@@ -67,9 +67,13 @@ class AuthenServiceTests extends FunSuite with BeforeAndAfter with MockitoSugar 
   }
 
   test("test Throws an exception") {
-    when(logic.total(1, 3)).thenReturn(4)
-    assertThrows[ArithmeticException] {
-      val checkNumberFalse = authenService.checkDiv(1, 3, 0)
+//    when(logic.div(1, 2)).thenReturn()
+    doThrow(new IllegalArgumentException).when(logic).div(1, 2)
+//    assertThrows[ArithmeticException] {
+//      val checkNumberFalse = authenService.checkDiv(1, 4, 2)
+//    }
+    assertThrows[IllegalArgumentException] {
+      val checkNumberFalse = authenService.checkDiv(1, 2, 2)
     }
   }
 
@@ -79,12 +83,11 @@ class AuthenServiceTests extends FunSuite with BeforeAndAfter with MockitoSugar 
     authenService.checkShow(1)
   }
 
-  test("test doThrow") {
+  test("test verify exception error_code_011") {
     // Sometimes used in void return methods or method that does not have side effects, or are not related to the unit testing you are doing
-    doThrow(new IllegalArgumentException).when(logic).div(1, 2)
-    assertThrows[IllegalArgumentException] {
-      val checkNumberFalse = authenService.checkThrowDiv(1, 2)
-    }
+    doThrow(new Exception).when(logic).div(1, 2)
+    val checkNumberFalse = authenService.checkThrowDiv(1, 2)
+    assertEquals("error_code_011", checkNumberFalse)
   }
 
 }

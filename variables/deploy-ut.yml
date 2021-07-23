@@ -7,7 +7,7 @@ variables:
   - name: user
     value: 'BizOneDev'
   - name: password
-    value: 'lt2ayqwcdfgavzcjlgg3ouecljwedebuuam3obo3ljfiy55xmwwa'
+    value: 'k2ngxxynrsnub4bc5eokslgkztnku76gh4uyqbsp6lplhgsn6wlq'
 # authentication Github
   - name: user.email
     value: 'duc.nguyen@bizone.com.vn'

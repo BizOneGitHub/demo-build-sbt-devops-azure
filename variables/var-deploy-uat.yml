@@ -1,6 +1,6 @@
 variables:
   - name: deploy_branch
-    value: 'release/ut_v2.0.48'
+    value: 'release/ut_v2.0.49'
 # credentials
   - name: host
     value: 'bizonedev.pkgs.visualstudio.com'

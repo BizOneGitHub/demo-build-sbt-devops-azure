@@ -5,7 +5,7 @@ variables:
   - name: user.name
     value: 'ducnguyen452021'
   - name: release_version
-    value: '2.0.46'
+    value: '2.0.48'
 #Release branch
   - name: release_branch
     value: 'ut'

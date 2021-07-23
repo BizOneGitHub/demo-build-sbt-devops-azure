@@ -29,7 +29,7 @@ stages:
         pool:
           vmImage: $(vmImage)
         variables:
-          - template: variables/release-ut.yml
+          - template: variables/var-release-ut.yml
         steps:
           - template: jobs/release.yml
 
@@ -42,7 +42,7 @@ stages:
         pool:
           vmImage: $(vmImage)
         variables:
-          - template: variables/release-ut.yml
+          - template: variables/var-release-ut.yml
         steps:
           - template: jobs/rollback.yml
 
@@ -55,60 +55,60 @@ stages:
         pool:
           vmImage: $(vmImage)
         variables:
-          - template: variables/deploy-ut.yml
+          - template: variables/var-deploy-ut.yml
         environment: UT
         strategy:
           runOnce:
             deploy:
               steps:
                 - template: jobs/deploy.yml
-#  - stage: ITStage
-#    displayName: Deploy IT Stage
-#    dependsOn: UTStage
-#    condition: succeeded('UTStage')
-#    jobs:
-#      - deployment: DeploymentITJob
-#        pool:
-#          vmImage: $(vmImage)
-#        variables:
-#          - template: variables/deploy-it.yml
-#        environment: IT
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
-#
-#  - stage: UATStage
-#    displayName: Deploy UAT Stage
-#    dependsOn: ITStage
-#    condition: succeeded('ITStage')
-#    jobs:
-#      - deployment: DeploymentUATJob
-#        pool:
-#          vmImage: $(vmImage)
-#        variables:
-#          - template: variables/deploy-uat.yml
-#        environment: UAT
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
-#
-#  - stage: ProdStage
-#      displayName: Deploy UAT Stage
-#      dependsOn: ITStage
-#      condition: succeeded('ITStage')
-#      jobs:
-#        - deployment: DeploymentUATJob
-#          pool:
-#            vmImage: $(vmImage)
-#          variables:
-#            - template: variables/deploy-prod.yml
-#          environment: Prod
-#          strategy:
-#            runOnce:
-#              deploy:
-#                steps:
-#                  - template: jobs/deploy.yml
+  - stage: ITStage
+    displayName: Deploy IT Stage
+    dependsOn: UTStage
+    condition: succeeded('UTStage')
+    jobs:
+      - deployment: DeploymentITJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/var-deploy-it.yml
+        environment: IT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml
+
+  - stage: UATStage
+    displayName: Deploy UAT Stage
+    dependsOn: ITStage
+    condition: succeeded('ITStage')
+    jobs:
+      - deployment: DeploymentUATJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/var-deploy-uat.yml
+        environment: UAT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml
+
+  - stage: ProdStage
+      displayName: Deploy UAT Stage
+      dependsOn: ITStage
+      condition: succeeded('ITStage')
+      jobs:
+        - deployment: DeploymentUATJob
+          pool:
+            vmImage: $(vmImage)
+          variables:
+            - template: variables/var-deploy-prod.yml
+          environment: PROD
+          strategy:
+            runOnce:
+              deploy:
+                steps:
+                  - template: jobs/deploy-prod.yml

@@ -1,13 +1,13 @@
 variables:
   - name: deploy_branch
-    value: 'release/uat_v2.0.44'
+    value: 'release/ut_v2.0.48'
 # credentials
   - name: host
     value: 'bizonedev.pkgs.visualstudio.com'
   - name: user
     value: 'BizOneDev'
   - name: password
-    value: 'ksa3yky5cyrygecxjodthcgy3iilcmibostl7bq4kmiwfmvk7z6q'
+    value: 'k2ngxxynrsnub4bc5eokslgkztnku76gh4uyqbsp6lplhgsn6wlq'
 # authentication Github
   - name: user.email
     value: 'duc.nguyen@bizone.com.vn'

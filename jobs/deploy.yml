@@ -24,8 +24,8 @@ steps:
     Add-Content  $HOME/.sbt/.credentials "`npassword=$(password)"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
-#- script: sbt coverage test coverageReport coverageOff
-#  displayName: 'Running $ scan line of code function coverageReport'
-- script: sbt coverageOff dev:assembly publish
+- script: sbt coverage test coverageReport coverageOff
+  displayName: 'Running $ scan line of code function coverageReport'
+- script: sbt dev:assembly publish
   displayName: 'Run $ sbt coverageOff dev:assembly publish'
 

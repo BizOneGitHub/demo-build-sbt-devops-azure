@@ -9,6 +9,6 @@ class RealLoginService extends LoginService {
   }
 
   override def loginByUser(name: String, password: String): Option[User] = {
-    return Some(User(name))
+    return Some(User(name, password))
   }
 }

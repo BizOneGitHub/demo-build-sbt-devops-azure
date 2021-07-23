@@ -37,7 +37,7 @@ class AuthedServiceTests extends FunSuite with BeforeAndAfter with MockitoSugar 
 
     // (2) setup: when someone logs in as "johndoe", the service should work;
     //            when they try to log in as "joehacker", it should fail.
-    when(service.loginByUser(null, "secret")).thenReturn(Some(User("johndoe")))
+    when(service.loginByUser(null, "secret")).thenReturn(Some(User("johndoe", "secret" )))
     when(service.loginByUser("joehacker", "secret")).thenReturn(None)
 
     // (3) access the service
@@ -45,7 +45,7 @@ class AuthedServiceTests extends FunSuite with BeforeAndAfter with MockitoSugar 
     val joehacker = authenService.authByUser("joehacker", "secret")
 
     // (4) verify the results
-    assertEquals(johndoe.get, User("johndoe"))
+    assertEquals(johndoe.get, User("johndoe", "secret"))
     assertEquals(joehacker, None)
 
   }

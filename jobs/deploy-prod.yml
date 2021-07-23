@@ -17,7 +17,7 @@ steps:
       git merge origin/$(merge_branch)
       git add -A
       git commit -m 'build_release_commit'
-      git push origin head
+      git push origin feature/$(deploy_branch)
 - powershell: |
     $destinationFolder = $HOME+"\.sbt"
     if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}

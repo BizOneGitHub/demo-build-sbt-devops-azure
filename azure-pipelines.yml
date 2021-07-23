@@ -32,7 +32,6 @@ stages:
           - template: variables/release-ut.yml
         steps:
           - template: jobs/release.yml
-
   - stage: RollBackRelease
     displayName: RollBack Release Stage
     dependsOn: Release
@@ -97,8 +96,8 @@ stages:
 
   - stage: ProdStage
       displayName: Deploy UAT Stage
-      dependsOn: ITStage
-      condition: succeeded('ITStage')
+      dependsOn: UATStage
+      condition: succeeded('UATStage')
       jobs:
         - deployment: DeploymentUATJob
           pool:

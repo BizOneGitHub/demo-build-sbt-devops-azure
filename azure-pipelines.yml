@@ -61,7 +61,7 @@ stages:
           runOnce:
             deploy:
               steps:
-                - template: jobs/deploy-ut.yml
+                - template: jobs/deploy.yml
   - stage: ITStage
     displayName: Deploy IT Stage
     dependsOn: UTStage

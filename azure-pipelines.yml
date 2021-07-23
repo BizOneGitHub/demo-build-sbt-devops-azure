@@ -46,22 +46,22 @@ stages:
         steps:
           - template: jobs/rollback.yml
 
-#  - stage: UTStage
-#    displayName: Deploy UT Stage
-#    dependsOn: Release
-#    condition: succeeded('Release')
-#    jobs:
-#      - deployment: DeploymentJob
-#        pool:
-#          vmImage: $(vmImage)
-#        variables:
-#          - template: variables/deploy-ut.yml
-#        environment: UT
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy-ut.yml
+  - stage: UTStage
+    displayName: Deploy UT Stage
+    dependsOn: Release
+    condition: succeeded('Release')
+    jobs:
+      - deployment: DeploymentJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/deploy-ut.yml
+        environment: UT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy-ut.yml
 #  - stage: ITStage
 #    displayName: Deploy IT Stage
 #    dependsOn: UTStage

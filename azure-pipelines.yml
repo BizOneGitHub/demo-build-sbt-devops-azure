@@ -97,18 +97,18 @@ stages:
                 - template: jobs/deploy.yml
 
   - stage: ProdStage
-      displayName: Deploy UAT Stage
-      dependsOn: ITStage
-      condition: succeeded('ITStage')
-      jobs:
-        - deployment: DeploymentUATJob
-          pool:
-            vmImage: $(vmImage)
-          variables:
-            - template: variables/var-deploy-prod.yml
-          environment: PROD
-          strategy:
-            runOnce:
-              deploy:
-                steps:
-                  - template: jobs/deploy-prod.yml
+    displayName: Deploy UAT Stage
+    dependsOn: ITStage
+    condition: succeeded('ITStage')
+    jobs:
+      - deployment: DeploymentUATJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/var-deploy-prod.yml
+        environment: PROD
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy-prod.yml

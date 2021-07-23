@@ -22,29 +22,29 @@ variables:
     value: 'ubuntu-latest'
 
 stages:
-  - stage: Release
-    displayName: Release Stage
-    jobs:
-      - job: ReleaseJob
-        pool:
-          vmImage: $(vmImage)
-        variables:
-          - template: variables/var-release-ut.yml
-        steps:
-          - template: jobs/release.yml
-
-  - stage: RollBackRelease
-    displayName: RollBack Release Stage
-    dependsOn: Release
-    condition: failed('Release')
-    jobs:
-      - job: RollBackReleaseJob
-        pool:
-          vmImage: $(vmImage)
-        variables:
-          - template: variables/var-release-ut.yml
-        steps:
-          - template: jobs/rollback.yml
+#  - stage: Release
+#    displayName: Release Stage
+#    jobs:
+#      - job: ReleaseJob
+#        pool:
+#          vmImage: $(vmImage)
+#        variables:
+#          - template: variables/var-release-ut.yml
+#        steps:
+#          - template: jobs/release.yml
+#
+#  - stage: RollBackRelease
+#    displayName: RollBack Release Stage
+#    dependsOn: Release
+#    condition: failed('Release')
+#    jobs:
+#      - job: RollBackReleaseJob
+#        pool:
+#          vmImage: $(vmImage)
+#        variables:
+#          - template: variables/var-release-ut.yml
+#        steps:
+#          - template: jobs/rollback.yml
 
 #  - stage: UTStage
 #    displayName: Deploy UT Stage

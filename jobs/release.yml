@@ -8,7 +8,7 @@ steps:
     script: |
       git config --global user.email "$(user.email)"
       git config --global user.name "$(user.name)"
-      git checkout -b release/$(release_branch)_v$(release_version) origin/release/new
+      git checkout -b release/$(release_branch)_v$(release_version) origin/release/builds
       git push origin release/$(release_branch)_v$(release_version)
       git checkout -b release/$(release_branch)_temp origin/release/$(release_branch)_v$(release_version)
       git merge origin/dev

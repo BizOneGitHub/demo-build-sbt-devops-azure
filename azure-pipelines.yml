@@ -98,8 +98,8 @@ stages:
 
   - stage: ProdStage
     displayName: Deploy Prod Stage
-    dependsOn: UATStage
-    condition: succeeded('UATStage')
+#    dependsOn: UATStage
+#    condition: succeeded('UATStage')
     jobs:
       - deployment: DeploymentUATJob
         pool:

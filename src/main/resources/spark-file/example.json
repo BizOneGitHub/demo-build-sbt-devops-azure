@@ -1,0 +1,4 @@
+[{"name":"tin duc","age":3,"country": {"city": "hcm", "dist": "12"}},
+ {"name":"tin duc1","age":3,"country": {"city": "hcm", "dist": "12"}},
+ {"name":"tin duc2","age":3,"country": {"city": "hcm", "dist": "12"}}
+]

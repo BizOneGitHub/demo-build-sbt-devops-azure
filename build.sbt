@@ -1,6 +1,6 @@
 import sbt.Keys.{isSnapshot, publishTo}
 import sbt.addCompilerPlugin
-
+import sbtsonar.SonarPlugin.autoImport.sonarUseExternalConfig
 import ReleaseTransformations._
 
 ThisBuild / organization := "com.bizone"
@@ -46,7 +46,7 @@ ThisBuild / libraryDependencies ++= Seq(
   "junit" % "junit" % "4.11" % Test,
   "org.specs2" % "specs2-core_2.12" % "4.2.0",
   "org.specs2" % "specs2-junit_2.12" % "4.2.0",
-  "org.mockito" %% "mockito-scala" % "1.16.37" % "test"
+  "org.mockito" %% "mockito-scala" % "1.16.37" % "test",
 )
 
 lazy val Prod = config("prod").extend(Compile).describedAs("scope to build production packages")
@@ -134,3 +134,6 @@ releaseProcess := Seq[ReleaseStep](
 )
 
 releaseUseGlobalVersion := false
+sonarUseExternalConfig := true
+
+unmanagedBase := new java.io.File("C:\\Users\\duc-n\\anaconda3\\Lib\\site-packages\\pyspark\\jars")

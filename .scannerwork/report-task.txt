@@ -1,0 +1,6 @@
+projectKey=velocity
+serverUrl=http://localhost:9000
+serverVersion=9.0.0.45539
+dashboardUrl=http://localhost:9000/dashboard?id=velocity
+ceTaskId=AXrne4uraRAOwDlC3fcp
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXrne4uraRAOwDlC3fcp

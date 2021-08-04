@@ -9,7 +9,6 @@ trigger:
     include:
       - develop
 
-
 #pr:
 #  branches:
 #    include:

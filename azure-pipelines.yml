@@ -22,18 +22,10 @@ variables:
     value: 'ubuntu-latest'
 
 stages:
-<<<<<<< HEAD
-  - stage: Build
-    displayName: Build stage
-    condition: eq(variables['build.sourceBranch'], 'refs/heads/develop')
-    jobs:
-      - job: BuildJob
-=======
   - stage: Validate
     displayName: Release Stage
     jobs:
       - job: ReleaseJob
->>>>>>> origin/main
         pool:
           vmImage: $(vmImage)
         variables:

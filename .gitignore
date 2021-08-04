@@ -1,12 +1,9 @@
-*.class
-*.log
-target/
-project/project
-project/target
-# Scala-IDE specific
+/target/**
+/project/target/**
+/project/project/**
+
 .cache-main
 .cache-tests
 
-# IntelliJ IDEA specific
 .idea
 .bsp

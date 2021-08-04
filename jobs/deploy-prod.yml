@@ -13,7 +13,11 @@ steps:
     script: |
       git config --global user.email "$(user.email)"
       git config --global user.name "$(user.name)"
-      git checkout -b $(deploy_branch) origin/$(deploy_branch)
+      git checkout -b feature/$(deploy_branch) origin/$(deploy_branch)
+      git merge origin/$(merge_branch)
+      git add -A
+      git commit -m 'build_release_commit'
+      git push origin feature/$(deploy_branch)
 - powershell: |
     $destinationFolder = $HOME+"\.sbt"
     if (!(Test-Path -path $destinationFolder)) {New-Item $destinationFolder -Type Directory}
@@ -24,8 +28,15 @@ steps:
     Add-Content  $HOME/.sbt/.credentials "`npassword=$(password)"
 - script: sbt clean
   displayName: 'Running $ sbt clean'
-#- script: sbt coverage test coverageReport
+#- script: sbt coverage test coverageReport coverageOff
 #  displayName: 'Running $ scan line of code function coverageReport'
-- script: sbt coverageOff dev:assembly
-  displayName: 'Run $ sbt dev:assembly publish'
-
+- script: sbt dev:assembly publish
+  displayName: 'Run $ sbt coverageOff dev:assembly publish'
+- script: sbt "release release-version $(release_version) with-defaults"
+  displayName: 'Running $ sbt "release release-version $(release_version) with-defaults"'
+- task: Bash@3
+  displayName: 'delete feature/$(deploy_branch) branch'
+  inputs:
+    targetType: 'inline'
+    script: |
+      git push origin --delete feature/$(deploy_branch)

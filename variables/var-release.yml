@@ -1,0 +1,11 @@
+variables:
+  # authentication Github
+  - name: user.email
+    value: 'duc.nguyen@bizone.com.vn'
+  - name: user.name
+    value: 'ducnguyen452021'
+  - name: release_version
+    value: '2.0.49'
+#Release branch
+  - name: release_branch
+    value: 'ut'

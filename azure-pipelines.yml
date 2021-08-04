@@ -4,42 +4,90 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
-- develop
-
-pr:
+  batch: true
   branches:
     include:
-      - master
-      - dev
+      - release/builds
 
+
+#pr:
+#  branches:
+#    include:
+#      - dev
+#  paths:
+#    exclude:
+#      - version.sbt
 variables:
   - name: vmImage
     value: 'ubuntu-latest'
 
 stages:
+<<<<<<< HEAD
   - stage: Build
     displayName: Build stage
     condition: eq(variables['build.sourceBranch'], 'refs/heads/develop')
     jobs:
       - job: BuildJob
+=======
+  - stage: Validate
+    displayName: Release Stage
+    jobs:
+      - job: ReleaseJob
+>>>>>>> origin/main
         pool:
           vmImage: $(vmImage)
+        variables:
+          - template: variables/var-release.yml
         steps:
-          - template: jobs/build.yml
+          - template: jobs/release.yml
 
-#  - stage: Prod
-#    displayName: Deploy prod stage
-#    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-#    jobs:
-#      - deployment: DeploymentJob2
-#        pool:
-#          vmImage: $(vmImage)
-#        environment: prod
-##        variables:
-##          - template: Variables/prod.yml
-#        strategy:
-#          runOnce:
-#            deploy:
-#              steps:
-#                - template: jobs/deploy.yml
+  - stage: UTStage
+    displayName: Deploy UT Stage
+    dependsOn: Validate
+    condition: succeeded('Validate')
+    jobs:
+      - deployment: DeploymentJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/var-deploy-ut.yml
+        environment: UT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml
+
+  - stage: UATStage
+    displayName: Deploy UAT Stage
+    dependsOn: UTStage
+    condition: succeeded('UTStage')
+    jobs:
+      - deployment: DeploymentUATJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/var-deploy-uat.yml
+        environment: UAT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy.yml
+
+  - stage: ProdStage
+    displayName: Deploy Prod Stage
+    dependsOn: UATStage
+    condition: succeeded('UATStage')
+    jobs:
+      - deployment: DeploymentPRODJob
+        pool:
+          vmImage: $(vmImage)
+        variables:
+          - template: variables/var-deploy-prod.yml
+        environment: PROD
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/deploy-prod.yml

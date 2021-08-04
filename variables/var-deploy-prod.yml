@@ -1,0 +1,19 @@
+variables:
+  - name: deploy_branch
+    value: 'main'
+  - name: merge_branch
+    value: 'release/ut_v2.0.49'
+  - name: release_version
+    value: '2.0.49'
+# credentials
+  - name: host
+    value: 'bizonedev.pkgs.visualstudio.com'
+  - name: user
+    value: 'BizOneDev'
+  - name: password
+    value: 'k2ngxxynrsnub4bc5eokslgkztnku76gh4uyqbsp6lplhgsn6wlq'
+# authentication Github
+  - name: user.email
+    value: 'duc.nguyen@bizone.com.vn'
+  - name: user.name
+    value: 'ducnguyen452021'

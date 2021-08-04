@@ -1,6 +1,7 @@
 package com.bizone
 
 import com.typesafe.config.ConfigFactory
+//import org.apache.spark
 
 /**
  * @author duc.nguyen
@@ -26,6 +27,7 @@ object App  {
     val env = config.getString("env")
 
     println(s"This package runs in $env")
+
   }
 
 }

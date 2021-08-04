@@ -7,7 +7,7 @@ trigger:
   batch: true
   branches:
     include:
-      - release/builds
+      - develop
 
 
 #pr:
@@ -25,13 +25,17 @@ stages:
   - stage: Validate
     displayName: Release Stage
     jobs:
-      - job: ReleaseJob
+      - deployment: ValidateJob
         pool:
           vmImage: $(vmImage)
         variables:
           - template: variables/var-release.yml
-        steps:
-          - template: jobs/release.yml
+        environment: UT
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: jobs/validate.yml
 
   - stage: UTStage
     displayName: Deploy UT Stage

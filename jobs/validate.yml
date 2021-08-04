@@ -1,0 +1,16 @@
+steps:
+  - checkout: self
+    persistCredentials: true
+  - script: sbt coverage test coverageReport coverageOff
+    displayName: 'Running $ scan line of code function coverageReport'
+  #- script: sbt "release release-version $(release_version) with-defaults"
+  #  displayName: 'Running $ sbt "release release-version $(release_version) with-defaults"'
+  - task: Bash@3
+    displayName: 'create release/branch'
+    inputs:
+      targetType: 'inline'
+      script: |
+        git config --global user.email "$(user.email)"
+        git config --global user.name "$(user.name)"
+        git checkout -b release/$(release_branch)_v$(release_version) origin/develop
+        git push origin release/$(release_branch)_v$(release_version)

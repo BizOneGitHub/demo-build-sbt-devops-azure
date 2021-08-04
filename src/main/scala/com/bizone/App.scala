@@ -1,7 +1,7 @@
 package com.bizone
 
 import com.typesafe.config.ConfigFactory
-import org.apache.spark
+//import org.apache.spark
 
 /**
  * @author duc.nguyen

@@ -47,6 +47,7 @@ ThisBuild / libraryDependencies ++= Seq(
   "org.specs2" % "specs2-core_2.12" % "4.2.0",
   "org.specs2" % "specs2-junit_2.12" % "4.2.0",
   "org.mockito" %% "mockito-scala" % "1.16.37" % "test",
+  "com.google.code.gson" % "gson" % "2.8.7"
 )
 
 lazy val Prod = config("prod").extend(Compile).describedAs("scope to build production packages")

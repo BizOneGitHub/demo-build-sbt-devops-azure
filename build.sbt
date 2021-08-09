@@ -135,7 +135,7 @@ releaseProcess := Seq[ReleaseStep](
   pushChanges
 )
 
-releaseUseGlobalVersion := false
-sonarUseExternalConfig := true
+//releaseUseGlobalVersion := false
+//sonarUseExternalConfig := true
 
-unmanagedBase := new java.io.File("C:\\Users\\duc-n\\anaconda3\\Lib\\site-packages\\pyspark\\jars")
+//unmanagedBase := new java.io.File("C:\\Users\\duc-n\\anaconda3\\Lib\\site-packages\\pyspark\\jars")

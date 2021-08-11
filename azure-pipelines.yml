@@ -2,17 +2,18 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
-trigger:
-  batch: true
-  branches:
-    include:
-      - develop
-
-#pr:
+#
+#trigger:
+#  batch: true
 #  branches:
 #    include:
-#      - dev
+#      - develop
+
+
+pr:
+  branches:
+    include:
+      - main
 #  paths:
 #    exclude:
 #      - version.sbt

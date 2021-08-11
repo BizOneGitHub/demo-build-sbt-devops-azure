@@ -3,16 +3,17 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+#trigger:
+#  batch: true
+#  branches:
+#    include:
+#      - release/builds
+
+
 pr:
   branches:
     include:
       - develop
-
-
-#pr:
-#  branches:
-#    include:
-#      - dev
 #  paths:
 #    exclude:
 #      - version.sbt

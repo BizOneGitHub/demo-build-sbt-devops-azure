@@ -13,7 +13,7 @@
 pr:
   branches:
     include:
-      - develop
+      - main
 #  paths:
 #    exclude:
 #      - version.sbt

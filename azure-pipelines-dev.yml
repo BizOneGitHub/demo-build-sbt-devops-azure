@@ -11,14 +11,14 @@ variables:
   - name: vmImage
     value: 'ubuntu-latest'
 jobs:
-  - deployment: ValidateJob
+  - deployment: Validate-Job
     pool:
       vmImage: $(vmImage)
     variables:
       - template: variables/var-release.yml
     environment: UT
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - template: jobs/validate.yml
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+                - template: jobs/validate.yml

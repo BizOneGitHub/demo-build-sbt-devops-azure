@@ -95,28 +95,28 @@ coverageHighlighting := true
 
 publishMavenStyle := true
 
-publishTo := {
-  if (isSnapshot.value)
-    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
-  else
-    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
-}
-
-//credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 //publishTo := {
 //  if (isSnapshot.value)
-//    Some(
-//      "snapshots".at(
-//        "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots"
-//      )
-//    )
+//    Some(MavenCache("Sonatype OSS Snapshots", file(Path.userHome.absolutePath + "/.m2/repository/snapshots")))
 //  else
-//    Some(
-//      "release".at(
-//        "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/"
-//      )
-//    )
+//    Some(MavenCache("local-maven", file(Path.userHome.absolutePath + "/.m2/repository")))
 //}
+
+credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
+publishTo := {
+  if (isSnapshot.value)
+    Some(
+      "snapshots".at(
+        "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_evaluation/maven/v1/snapshots"
+      )
+    )
+  else
+    Some(
+      "release".at(
+        "https://bizonedev.pkgs.visualstudio.com/Demo/_packaging/maven_sbt_demo/maven/v1/"
+      )
+    )
+}
 
 
 releaseIgnoreUntrackedFiles := true

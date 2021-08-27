@@ -1,11 +1,11 @@
-package com.bizone
-//import com.bizone.common.SparkManager.spark
-//
-//import scala.io.Source
-//import com.bizone.common.SparkManager.spark.implicits._
+/*package com.bizone
+import com.bizone.common.SparkManager.spark
+
+import scala.io.Source
+import com.bizone.common.SparkManager.spark.implicits._
 object SparkDemo {
   def main(args : Array[String]) {
-    /*
+
     //Load Json Mapper DF
     val source: String = Source.fromResource("spark-file/example.json").getLines.mkString
     val otherPeopleDataset = spark.createDataset(source :: Nil)
@@ -46,6 +46,7 @@ object SparkDemo {
     println(values(0))
 
     spark.read.option("header",true).csv("dbfs:/mnt/testg2/user.csv").show()
- */
+
   }
 }
+*/
